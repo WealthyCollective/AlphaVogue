@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALPHA VOGUE — Gen-Alpha's Fashion & Culture Magazine</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;300;400;500;600;700;800&family=Didact+Gothic&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #000000;
+            --white: #FFFFFF;
+            --off-white: #FAFAFA;
+            --light-gray: #F5F5F5;
+            --mid-gray: #CCCCCC;
+            --text-gray: #666666;
+            --accent-red: #E31E24;
+            --border: #E8E8E8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Futura PT', 'Nunito Sans', 'Avenir Next', 'Century Gothic', -apple-system, sans-serif;
+            background: var(--white);
+            color: var(--black);
+            line-height: 1.5;
+            font-weight: 400;
+            letter-spacing: 0.3px;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-container {
+            max-width: 1800px;
+            margin: 0 auto;
+            padding: 1.5rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Futura PT', 'Nunito Sans', 'Avenir Next', 'Century Gothic', sans-serif;
+            font-size: 1.5rem;
+            letter-spacing: 3px;
+            text-decoration: none;
+            color: var(--black);
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--black);
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 400;
+            transition: opacity 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.6;
+        }
+
+        .subscribe-link {
+            color: var(--accent-red) !important;
+            font-weight: 500;
+        }
+
+        /* Hero Split Layout */
+        .hero {
+            margin-top: 80px;
+            max-width: 1800px;
+            margin-left: auto;
+            margin-right: auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 90vh;
+        }
+
+        .hero-left {
+            background: var(--off-white);
+            padding: 6rem 4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .hero-eyebrow {
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 3rem;
+            font-weight: 500;
+            color: var(--text-gray);
+        }
+
+        .hero-headline {
+            font-family: 'Futura PT', 'Nunito Sans', 'Avenir Next', 'Century Gothic', sans-serif;
+            font-size: 4.5rem;
+            line-height: 0.9;
+            letter-spacing: 1px;
+            margin-bottom: 3rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .hero-headline-line {
+            display: block;
+        }
+
+        .stats-grid {
+            display: grid;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-item {
+            border-left: 3px solid var(--black);
+            padding-left: 1.5rem;
+        }
+
+        .stat-number {
+            font-family: 'Futura PT', 'Nunito Sans', 'Avenir Next', 'Century Gothic', sans-serif;
+            font-size: 3rem;
+            line-height: 1;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+            font-weight: 300;
+            line-height: 1.6;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            color: var(--black);
+            text-decoration: none;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 500;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--black);
+            transition: all 0.3s ease;
+            width: fit-content;
+        }
+
+        .hero-cta:hover {
+            gap: 1.5rem;
+        }
+
+        .hero-right {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #E5F4FF 0%, #B6D4E8 50%, #87CEEB 100%);
+        }
+
+        .hero-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-image-text {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 7rem;
+            color: rgba(255, 255, 255, 0.95);
+            letter-spacing: 8px;
+            text-align: center;
+            line-height: 1;
+            z-index: 2;
+        }
+
+        .hero-image-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 3rem;
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 100%);
+            color: var(--white);
+            z-index: 3;
+        }
+
+        .overlay-tag {
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            font-weight: 400;
+            opacity: 0.9;
+        }
+
+        .overlay-title {
+            font-family: 'Didot', 'Bodoni MT', 'Didact Gothic', serif;
+            font-size: 2rem;
+            margin-bottom: 0.8rem;
+            line-height: 1.2;
+            font-weight: 400;
+        }
+
+        .overlay-desc {
+            font-size: 0.95rem;
+            opacity: 0.9;
+            font-weight: 300;
+            line-height: 1.7;
+        }
+
+        /* Marquee Section */
+        .marquee-section {
+            padding: 2rem 0;
+            background: var(--black);
+            overflow: hidden;
+        }
+
+        .marquee {
+            display: flex;
+            animation: scroll 30s linear infinite;
+            gap: 4rem;
+        }
+
+        .marquee-item {
+            font-family: 'Futura PT', 'Nunito Sans', 'Avenir Next', 'Century Gothic', sans-serif;
+            font-size: 1.2rem;
+            color: var(--white);
+            white-space: nowrap;
+            letter-spacing: 3px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Featured Brands Grid */
+        .brands-section {
+            padding: 8rem 0;
+            background: var(--white);
+        }
+
+        .section-container {
+            max-width: 1800px;
+            margin: 0 auto;
+            padding: 0 3rem;
+        }
+
+        .section-header {
+            margin-bottom: 5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 2rem;
+        }
+
+        .section-title {
+            font-family: 'Futura PT', 'Nunito Sans', 'Avenir Next', 'Century Gothic', sans-serif;
+            font-size: 3rem;
+            letter-spacing: 2px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .section-subtitle {
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-gray);
+            font-weight: 300;
+        }
+
+        .brands-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
+            border: 1px solid var(--border);
+        }
+
+        .brand-card {
+            border-right: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            transition: all 0.3s ease;
+            background: var(--white);
+        }
+
+        .brand-card:nth-child(3n) {
+            border-right: none;
+        }
+
+        .brand-card:nth-last-child(-n+3) {
+            border-bottom: none;
+        }
+
+        .brand-card:hover {
+            background: var(--off-white);
+            z-index: 10;
+        }
+
+        .brand-image {
+            width: 100%;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .brand-image-1 {
+            background: linear-gradient(135deg, #FFE5E5 0%, #FFB6C1 100%);
+        }
+
+        .brand-image-2 {
+            background: linear-gradient(135deg, #E5F4FF 0%, #B6D4E8 100%);
+        }
+
+        .brand-image-3 {
+            background: linear-gradient(135deg, #FFE8E0 0%, #FFD4C4 100%);
+        }
+
+        .brand-image-4 {
+            background: linear-gradient(135deg, #F0E5FF 0%, #D4C4E8 100%);
+        }
+
+        .brand-image-5 {
+            background: linear-gradient(135deg, #E8FFE5 0%, #C4E8D4 100%);
+        }
+
+        .brand-image-6 {
+            background: linear-gradient(135deg, #FFF4E5 0%, #FFE4C4 100%);
+        }
+
+        .brand-logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 3rem;
+            letter-spacing: 2px;
+            color: rgba(0, 0, 0, 0.3);
+            text-align: center;
+            line-height: 1.1;
+        }
+
+        .brand-content {
+            padding: 2.5rem;
+        }
+
+        .brand-category {
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-gray);
+            margin-bottom: 1rem;
+        }
+
+        .brand-name {
+            font-family: 'Didot', 'Bodoni MT', 'Didact Gothic', serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+            font-weight: 400;
+        }
+
+        .brand-description {
+            font-size: 0.85rem;
+            line-height: 1.8;
+            color: var(--text-gray);
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+        }
+
+        .brand-tags {
+            display: flex;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            font-size: 0.6rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 0.4rem 0.9rem;
+            border: 1px solid var(--border);
+            font-weight: 400;
+            transition: all 0.3s ease;
+        }
+
+        .tag:hover {
+            background: var(--black);
+            color: var(--white);
+        }
+
+        /* Editorial Section */
+        .editorial-section {
+            padding: 8rem 0;
+            background: var(--off-white);
+        }
+
+        .editorial-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 3rem;
+            margin-top: 5rem;
+        }
+
+        .editorial-large {
+            position: relative;
+            min-height: 700px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+        }
+
+        .editorial-image {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #F5F5F5 0%, #E0E0E0 100%);
+        }
+
+        .editorial-image-text {
+            font-family: 'Futura PT', 'Nunito Sans', 'Avenir Next', 'Century Gothic', sans-serif;
+            font-size: 5rem;
+            color: rgba(0, 0, 0, 0.2);
+            letter-spacing: 4px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .editorial-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 3rem;
+            background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, transparent 100%);
+            color: var(--white);
+        }
+
+        .editorial-tag {
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .editorial-title {
+            font-family: 'Didot', 'Bodoni MT', 'Didact Gothic', serif;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            font-weight: 400;
+        }
+
+        .editorial-desc {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            line-height: 1.7;
+        }
+
+        .editorial-small {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+
+        .editorial-card {
+            position: relative;
+            min-height: 350px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+        }
+
+        /* Masthead */
+        .masthead-section {
+            padding: 8rem 0;
+            background: var(--black);
+            color: var(--white);
+        }
+
+        .masthead-container {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 0 3rem;
+        }
+
+        .masthead-label {
+            font-size: 0.65rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            opacity: 0.6;
+        }
+
+        .masthead-name {
+            font-family: 'Didot', 'Bodoni MT', 'Didact Gothic', serif;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-style: italic;
+            font-weight: 400;
+        }
+
+        .masthead-title {
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0.8;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--black);
+            color: var(--white);
+            padding: 6rem 0 3rem;
+        }
+
+        .footer-container {
+            max-width: 1800px;
+            margin: 0 auto;
+            padding: 0 3rem;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 4rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-logo {
+            font-family: 'Futura PT', 'Nunito Sans', 'Avenir Next', 'Century Gothic', sans-serif;
+            font-size: 2rem;
+            letter-spacing: 3px;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .footer-tagline {
+            font-size: 0.9rem;
+            opacity: 0.6;
+            line-height: 1.6;
+            max-width: 400px;
+        }
+
+        .footer-section-title {
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .footer-link {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.85rem;
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer-link:hover {
+            opacity: 1;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .social-link {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
+        }
+
+        .social-link:hover {
+            opacity: 1;
+        }
+
+        .footer-bottom {
+            max-width: 1800px;
+            margin: 0 auto;
+            padding: 0 3rem;
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.7rem;
+            opacity: 0.4;
+            letter-spacing: 1px;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .hero {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-left {
+                border-bottom: 1px solid var(--border);
+            }
+
+            .hero-headline {
+                font-size: 3.5rem;
+            }
+
+            .brands-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .brand-card:nth-child(3n) {
+                border-right: 1px solid var(--border);
+            }
+
+            .brand-card:nth-child(2n) {
+                border-right: none;
+            }
+
+            .editorial-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 968px) {
+            .hero-headline {
+                font-size: 3rem;
+            }
+
+            .stat-number {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .brands-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .brand-card {
+                border-right: none !important;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-container {
+                padding: 1.5rem 2rem;
+            }
+
+            .section-container {
+                padding: 0 2rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero-headline {
+                font-size: 2.5rem;
+            }
+
+            .hero-left {
+                padding: 4rem 2rem;
+            }
+
+            .nav-links {
+                gap: 1.5rem;
+            }
+
+            .nav-links a {
+                font-size: 0.65rem;
+            }
+        }
+
+        /* Fade animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">ALPHA VOGUE</a>
+            <ul class="nav-links">
+                <li><a href="#featured">Featured</a></li>
+                <li><a href="#editorial">Editorial</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#subscribe" class="subscribe-link">Subscribe</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero" id="featured">
+        <div class="hero-left">
+            <div class="hero-eyebrow">ALPHA VOGUE / WINTER 2024</div>
+            <h1 class="hero-headline">
+                <span class="hero-headline-line">NOT THE</span>
+                <span class="hero-headline-line">FUTURE.</span>
+                <span class="hero-headline-line">THE BUYERS.</span>
+            </h1>
+            
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">$100B</div>
+                    <div class="stat-label">In purchasing power</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">42%</div>
+                    <div class="stat-label">Of household spend influenced by Gen-Alpha</div>
+                </div>
+            </div>
+
+            <a href="#brands" class="hero-cta">
+                Explore Featured Brands
+                <span>→</span>
+            </a>
+        </div>
+
+        <div class="hero-right">
+            <div class="hero-image">
+                <!-- Summer Fridays x Gap Campaign Image -->
+                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('https://www.mybarriere.com/cdn/shop/files/BA8006-LUBL-36_model2_c8d9ac41-6646-414c-a149-ebb221001457_1024x1024.jpg?v=1766422849'); background-size: cover; background-position: center;"></div>
+                <!-- Fallback gradient overlay if image doesn't load -->
+                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #E5F4FF 0%, #B6D4E8 50%, #87CEEB 100%); z-index: -1;"></div>
+            </div>
+            <div class="hero-image-overlay">
+                <div class="overlay-tag">Featured Campaign</div>
+                <h2 class="overlay-title">Wear Your Wellness</h2>
+                <p class="overlay-desc">
+                    Barriere vitamin patches redefine supplement culture—transforming daily nutrition 
+                    into wearable art. Featured in Vogue, loved by Gen-Alpha.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Marquee -->
+    <div class="marquee-section">
+        <div class="marquee">
+            <div class="marquee-item">BARRIERE VITAMIN PATCHES</div>
+            <div class="marquee-item">SUMMER FRIDAYS × GAP</div>
+            <div class="marquee-item">CRUMBL COOKIES</div>
+            <div class="marquee-item">EMERGING BRANDS</div>
+            <div class="marquee-item">STREET CULTURE</div>
+            <div class="marquee-item">BEAUTY INNOVATION</div>
+            <!-- Duplicate for seamless loop -->
+            <div class="marquee-item">BARRIERE VITAMIN PATCHES</div>
+            <div class="marquee-item">SUMMER FRIDAYS × GAP</div>
+            <div class="marquee-item">CRUMBL COOKIES</div>
+            <div class="marquee-item">EMERGING BRANDS</div>
+            <div class="marquee-item">STREET CULTURE</div>
+            <div class="marquee-item">BEAUTY INNOVATION</div>
+        </div>
+    </div>
+
+    <!-- Brands Grid -->
+    <section class="brands-section" id="brands">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">FEATURED BRANDS</h2>
+                <p class="section-subtitle">Gen-Alpha Approved</p>
+            </div>
+
+            <div class="brands-grid">
+                <!-- Barriere -->
+                <div class="brand-card">
+                    <div class="brand-image brand-image-1" style="background: linear-gradient(135deg, #FFE5E5 0%, #FFB6C1 100%); position: relative; overflow: hidden;">
+                        <!-- Campaign Image: Person wearing patch -->
+                        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('https://www.mybarriere.com/cdn/shop/files/BA8006-LUBL-36_model2_c8d9ac41-6646-414c-a149-ebb221001457_1024x1024.jpg?v=1766422849'); background-size: cover; background-position: center;"></div>
+                        <!-- Subtle overlay for readability -->
+                        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(255,229,229,0.3) 0%, rgba(255,182,193,0.3) 100%);"></div>
+                    </div>
+                    <div class="brand-content">
+                        <div class="brand-category">Wellness Technology</div>
+                        <h3 class="brand-name">Barriere Vitamin Patches</h3>
+                        <p class="brand-description">
+                            Skip the pills—wear your wellness. Transdermal vitamin delivery through 
+                            beautifully designed patches. Science-backed, third-party tested, and 
+                            featured in Vogue, Allure, and The New York Times.
+                        </p>
+                        <div class="brand-tags">
+                            <span class="tag">30M+ TikTok Views</span>
+                            <span class="tag">Biotech</span>
+                            <span class="tag">Vogue Featured</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Summer Fridays x Gap -->
+                <div class="brand-card">
+                    <div class="brand-image brand-image-2">
+                        <div class="brand-logo">SUMMER<br>FRIDAYS<br>× GAP</div>
+                    </div>
+                    <div class="brand-content">
+                        <div class="brand-category">Beauty × Fashion</div>
+                        <h3 class="brand-name">Summer Fridays × Gap</h3>
+                        <p class="brand-description">
+                            An unexpected convergence bridging skincare minimalism with American 
+                            sportswear heritage in limited-edition form.
+                        </p>
+                        <div class="brand-tags">
+                            <span class="tag">Collaboration</span>
+                            <span class="tag">Limited Edition</span>
+                            <span class="tag">Collectible</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Crumbl -->
+                <div class="brand-card">
+                    <div class="brand-image brand-image-3">
+                        <div class="brand-logo">CRUMBL<br>COOKIES</div>
+                    </div>
+                    <div class="brand-content">
+                        <div class="brand-category">Food Culture</div>
+                        <h3 class="brand-name">Crumbl Cookies</h3>
+                        <p class="brand-description">
+                            Engineered scarcity meets social ritual. Weekly rotating menus 
+                            transform cookies into cultural events and pink boxes into currency.
+                        </p>
+                        <div class="brand-tags">
+                            <span class="tag">Experience</span>
+                            <span class="tag">Social Commerce</span>
+                            <span class="tag">Weekly Drops</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Emerging 1 -->
+                <div class="brand-card">
+                    <div class="brand-image brand-image-4" style="position: relative; overflow: hidden;">
+                        <!-- Kids patches with fun designs -->
+                        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('https://www.mybarriere.com/cdn/shop/files/Barriere_Kids_Section_-_Image.jpg?v=1758605932'); background-size: cover; background-position: center;"></div>
+                        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(240,229,255,0.2) 0%, rgba(212,196,232,0.2) 100%);"></div>
+                    </div>
+                    <div class="brand-content">
+                        <div class="brand-category">Kids Wellness</div>
+                        <h3 class="brand-name">Barriere Kids</h3>
+                        <p class="brand-description">
+                            Making vitamins fun for Gen-Alpha. Adorable patch designs (dinosaurs, 
+                            rainbows, galaxies) transform daily nutrition into creative self-expression. 
+                            No pills, no sugar, pure innovation.
+                        </p>
+                        <div class="brand-tags">
+                            <span class="tag">Kids Health</span>
+                            <span class="tag">Design Forward</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Wellness Tech -->
+                <div class="brand-card">
+                    <div class="brand-image brand-image-5" style="position: relative; overflow: hidden;">
+                        <!-- NAD+ Youth Repair product shot -->
+                        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('https://www.mybarriere.com/cdn/shop/files/B_NAD_human_4_400x400.jpg?v=1762549270'); background-size: cover; background-position: center;"></div>
+                        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(232,255,229,0.2) 0%, rgba(196,232,212,0.2) 100%);"></div>
+                    </div>
+                    <div class="brand-content">
+                        <div class="brand-category">Anti-Aging Innovation</div>
+                        <h3 class="brand-name">NAD+ Youth Repair</h3>
+                        <p class="brand-description">
+                            Cellular energy and healthy aging support through NAD+ patches. 
+                            The IV drip alternative—no needles, no clinic visits, just premium 
+                            bioavailable delivery you can wear anywhere.
+                        </p>
+                        <div class="brand-tags">
+                            <span class="tag">Longevity Tech</span>
+                            <span class="tag">NAD+ Boost</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Social Commerce -->
+                <div class="brand-card">
+                    <div class="brand-image brand-image-6" style="position: relative; overflow: hidden;">
+                        <!-- Product shot showing patches -->
+                        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('https://www.mybarriere.com/cdn/shop/files/BA8008-MOGO-36SH04_400x400.jpg?v=1762549365'); background-size: cover; background-position: center;"></div>
+                        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(255,244,229,0.2) 0%, rgba(255,228,196,0.2) 100%);"></div>
+                    </div>
+                    <div class="brand-content">
+                        <div class="brand-category">Design × Function</div>
+                        <h3 class="brand-name">The Aesthetic Advantage</h3>
+                        <p class="brand-description">
+                            Barriere's patches aren't hidden—they're displayed. Limited-edition prints 
+                            (Mini Motif, Black Diamond, Icons) turn wellness into wearable art. 
+                            This is supplement culture reimagined for Instagram.
+                        </p>
+                        <div class="brand-tags">
+                            <span class="tag">Limited Editions</span>
+                            <span class="tag">Collectible</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Editorial -->
+    <section class="editorial-section" id="editorial">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">EDITORIAL</h2>
+                <p class="section-subtitle">Current Issue</p>
+            </div>
+
+            <div class="editorial-grid">
+                <div class="editorial-large">
+                    <div class="editorial-image">
+                        <div class="editorial-image-text">ISSUE 203</div>
+                    </div>
+                    <div class="editorial-overlay">
+                        <div class="editorial-tag">Cover Story</div>
+                        <h3 class="editorial-title">The Architecture of Taste</h3>
+                        <p class="editorial-desc">
+                            How Gen-Alpha constructs aesthetic systems from TikTok algorithms to IRL style tribes
+                        </p>
+                    </div>
+                </div>
+
+                <div class="editorial-small">
+                    <div class="editorial-card">
+                        <div class="editorial-image" style="background: linear-gradient(135deg, #F8F8F8 0%, #E8E8E8 100%);">
+                            <div class="editorial-image-text" style="font-size: 3.5rem;">STREET<br>STYLE</div>
+                        </div>
+                        <div class="editorial-overlay">
+                            <div class="editorial-tag">Fashion</div>
+                            <h3 class="editorial-title" style="font-size: 1.6rem;">Urban Language</h3>
+                            <p class="editorial-desc">Where street informs runway</p>
+                        </div>
+                    </div>
+
+                    <div class="editorial-card">
+                        <div class="editorial-image" style="background: linear-gradient(135deg, #FAFAFA 0%, #EBEBEB 100%);">
+                            <div class="editorial-image-text" style="font-size: 3.5rem;">BEAUTY</div>
+                        </div>
+                        <div class="editorial-overlay">
+                            <div class="editorial-tag">Culture</div>
+                            <h3 class="editorial-title" style="font-size: 1.6rem;">New Standards</h3>
+                            <p class="editorial-desc">Beyond algorithms</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Masthead -->
+    <section class="masthead-section" id="about">
+        <div class="masthead-container">
+            <div class="masthead-label">Editor in Chief & Creative Director</div>
+            <h2 class="masthead-name">Ayah-Sophia Dada</h2>
+            <p class="masthead-title">Curating the Future of Culture</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="subscribe">
+        <div class="footer-container">
+            <div>
+                <div class="footer-logo">ALPHA VOGUE</div>
+                <p class="footer-tagline">
+                    A digital publication documenting Gen-Alpha's cultural influence, 
+                    aesthetic evolution, and the brands shaping tomorrow.
+                </p>
+            </div>
+            
+            <div>
+                <h4 class="footer-section-title">Navigate</h4>
+                <div class="footer-links">
+                    <a href="#featured" class="footer-link">Featured</a>
+                    <a href="#brands" class="footer-link">Brands</a>
+                    <a href="#editorial" class="footer-link">Editorial</a>
+                    <a href="#about" class="footer-link">About</a>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="footer-section-title">Connect</h4>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/alphavoguehq" class="social-link">Instagram</a>
+                    <a href="https://www.tiktok.com/@alpha.vogue" class="social-link">TikTok</a>
+                    <a href="https://www.linkedin.com/company/alphavoguehq" class="social-link">LinkedIn</a>
+                </div>
+                <div style="margin-top: 2rem;">
+                    <a href="mailto:alphavoguehq@gmail.com" class="footer-link">alphavoguehq@gmail.com</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div>© 2024 Alpha Vogue. All rights reserved.</div>
+            <div>New York / London / Tokyo</div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.brand-card, .editorial-card, .editorial-large').forEach(el => {
+            el.classList.add('fade-in');
+            observer.observe(el);
+        });
+
+        // Parallax
+        let ticking = false;
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    const scrolled = window.pageYOffset;
+                    const heroImage = document.querySelector('.hero-image-text');
+                    if (heroImage && scrolled < 1000) {
+                        heroImage.style.transform = `translateY(${scrolled * 0.15}px) scale(${1 + scrolled * 0.00008})`;
+                    }
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+    </script>
+</body>
+</html>
