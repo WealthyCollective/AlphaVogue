@@ -34,8 +34,7 @@
         /* Navigation */
         nav {
             position: fixed;
-            top: 0;
-            width: 100%;
+            top: 0; width: 100%;
             background: rgba(255,255,255,0.98);
             backdrop-filter: blur(10px);
             z-index: 1000;
@@ -72,8 +71,7 @@
         }
 
         .hamburger span {
-            width: 24px;
-            height: 2px;
+            width: 24px; height: 2px;
             background: var(--black);
             transition: all 0.3s ease;
         }
@@ -146,11 +144,8 @@
 
         .stat-number {
             font-family: 'Futura PT', 'Nunito Sans', 'Avenir Next', 'Century Gothic', sans-serif;
-            font-size: 3rem;
-            line-height: 1;
-            letter-spacing: 1px;
-            margin-bottom: 0.5rem;
-            font-weight: 700;
+            font-size: 3rem; line-height: 1; letter-spacing: 1px;
+            margin-bottom: 0.5rem; font-weight: 700;
         }
 
         .stat-label { font-size: 0.9rem; color: var(--text-gray); font-weight: 300; line-height: 1.6; }
@@ -198,51 +193,17 @@
             z-index: 3;
         }
 
-        .overlay-tag {
-            font-size: 0.65rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 1rem;
-            font-weight: 400;
-            opacity: 0.9;
-        }
-
-        .overlay-title {
-            font-family: 'Didot', 'Bodoni MT', 'Didact Gothic', serif;
-            font-size: 2rem;
-            margin-bottom: 0.8rem;
-            line-height: 1.2;
-            font-weight: 400;
-        }
-
-        .overlay-desc {
-            font-size: 0.95rem;
-            opacity: 0.9;
-            font-weight: 300;
-            line-height: 1.7;
-        }
+        .overlay-tag { font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 1rem; font-weight: 400; opacity: 0.9; }
+        .overlay-title { font-family: 'Didot', 'Bodoni MT', 'Didact Gothic', serif; font-size: 2rem; margin-bottom: 0.8rem; line-height: 1.2; font-weight: 400; }
+        .overlay-desc { font-size: 0.95rem; opacity: 0.9; font-weight: 300; line-height: 1.7; }
 
         /* Marquee */
-        .marquee-section {
-            padding: 0.8rem 0;
-            background: var(--black);
-            overflow: hidden;
-        }
-
-        .marquee {
-            display: flex;
-            animation: scroll 30s linear infinite;
-            gap: 3rem;
-        }
-
+        .marquee-section { padding: 0.8rem 0; background: var(--black); overflow: hidden; }
+        .marquee { display: flex; animation: scroll 30s linear infinite; gap: 3rem; }
         .marquee-item {
             font-family: 'Futura PT', 'Nunito Sans', 'Avenir Next', 'Century Gothic', sans-serif;
-            font-size: 0.7rem;
-            color: var(--white);
-            white-space: nowrap;
-            letter-spacing: 2px;
-            font-weight: 500;
-            text-transform: uppercase;
+            font-size: 0.7rem; color: var(--white); white-space: nowrap;
+            letter-spacing: 2px; font-weight: 500; text-transform: uppercase;
         }
 
         @keyframes scroll {
@@ -267,19 +228,10 @@
 
         .section-title {
             font-family: 'Futura PT', 'Nunito Sans', 'Avenir Next', 'Century Gothic', sans-serif;
-            font-size: 3rem;
-            letter-spacing: 2px;
-            font-weight: 700;
-            text-transform: uppercase;
+            font-size: 3rem; letter-spacing: 2px; font-weight: 700; text-transform: uppercase;
         }
 
-        .section-subtitle {
-            font-size: 0.75rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--text-gray);
-            font-weight: 300;
-        }
+        .section-subtitle { font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-gray); font-weight: 300; }
 
         /* Brands Grid */
         .brands-grid {
@@ -299,132 +251,59 @@
         .brand-card:last-child { border-right: none; }
         .brand-card:hover { background: var(--off-white); z-index: 10; }
 
-        .brand-image {
-            width: 100%;
-            height: 400px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-
+        .brand-image { width: 100%; height: 400px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
         .brand-image-1 { background: linear-gradient(135deg, #FFE5E5 0%, #FFB6C1 100%); }
         .brand-image-2 { background: linear-gradient(135deg, #E5F4FF 0%, #B6D4E8 100%); }
         .brand-image-3 { background: linear-gradient(135deg, #FFE8E0 0%, #FFD4C4 100%); }
         .brand-image-4 { background: linear-gradient(135deg, #F0E5FF 0%, #D4C4E8 100%); }
 
         .brand-content { padding: 2.5rem; }
-
-        .brand-category {
-            font-size: 0.65rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--text-gray);
-            margin-bottom: 1rem;
-        }
-
-        .brand-name {
-            font-family: 'Didot', 'Bodoni MT', 'Didact Gothic', serif;
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            line-height: 1.3;
-            font-weight: 400;
-        }
-
-        .brand-description {
-            font-size: 0.85rem;
-            line-height: 1.8;
-            color: var(--text-gray);
-            margin-bottom: 1.5rem;
-            font-weight: 300;
-        }
-
+        .brand-category { font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-gray); margin-bottom: 1rem; }
+        .brand-name { font-family: 'Didot', 'Bodoni MT', 'Didact Gothic', serif; font-size: 1.5rem; margin-bottom: 1rem; line-height: 1.3; font-weight: 400; }
+        .brand-description { font-size: 0.85rem; line-height: 1.8; color: var(--text-gray); margin-bottom: 1.5rem; font-weight: 300; }
         .brand-tags { display: flex; gap: 0.6rem; flex-wrap: wrap; }
-
-        .tag {
-            font-size: 0.6rem;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            padding: 0.4rem 0.9rem;
-            border: 1px solid var(--border);
-            font-weight: 400;
-            transition: all 0.3s ease;
-        }
-
+        .tag { font-size: 0.6rem; letter-spacing: 1px; text-transform: uppercase; padding: 0.4rem 0.9rem; border: 1px solid var(--border); font-weight: 400; transition: all 0.3s ease; }
         .tag:hover { background: var(--black); color: var(--white); }
 
         /* Editorial */
         .editorial-section { padding: 8rem 0; background: var(--off-white); }
-
-        .editorial-grid {
-            display: grid;
-            grid-template-columns: 1.5fr 1fr;
-            gap: 3rem;
-            margin-top: 5rem;
-        }
-
-        .editorial-large {
-            position: relative;
-            min-height: 700px;
-            border: 1px solid var(--border);
-            overflow: hidden;
-        }
-
-        .editorial-image {
-            width: 100%; height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, #F5F5F5 0%, #E0E0E0 100%);
-        }
-
-        .editorial-overlay {
-            position: absolute;
-            bottom: 0; left: 0; right: 0;
-            padding: 3rem;
-            background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, transparent 100%);
-            color: var(--white);
-        }
-
-        .editorial-tag {
-            font-size: 0.65rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 1rem;
-        }
-
-        .editorial-title {
-            font-family: 'Didot', 'Bodoni MT', 'Didact Gothic', serif;
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            line-height: 1.2;
-            font-weight: 400;
-        }
-
+        .editorial-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 3rem; margin-top: 5rem; }
+        .editorial-large { position: relative; min-height: 700px; border: 1px solid var(--border); overflow: hidden; }
+        .editorial-image { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #F5F5F5 0%, #E0E0E0 100%); }
+        .editorial-overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 3rem; background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, transparent 100%); color: var(--white); }
+        .editorial-tag { font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 1rem; }
+        .editorial-title { font-family: 'Didot', 'Bodoni MT', 'Didact Gothic', serif; font-size: 1.8rem; margin-bottom: 1rem; line-height: 1.2; font-weight: 400; }
         .editorial-desc { font-size: 0.9rem; opacity: 0.9; line-height: 1.7; }
         .editorial-small { display: flex; flex-direction: column; gap: 3rem; }
+        .editorial-card { position: relative; min-height: 350px; border: 1px solid var(--border); overflow: hidden; flex: 1; }
 
-        .editorial-card {
+        /* Articles — Horizontal Scroll Carousel */
+        .articles-section { padding: 8rem 0; background: var(--white); overflow: hidden; }
+
+        .articles-scroll-wrapper {
             position: relative;
-            min-height: 350px;
-            border: 1px solid var(--border);
-            overflow: hidden;
-            flex: 1;
+            margin-top: 0;
         }
 
-        /* Articles */
-        .articles-section { padding: 8rem 0; background: var(--white); }
-
-        .articles-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2.5rem;
+        .articles-scroll-track {
+            display: flex;
+            gap: 2rem;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            padding-bottom: 2rem;
+            scrollbar-width: none;
         }
+
+        .articles-scroll-track::-webkit-scrollbar { display: none; }
 
         .article-card {
+            flex: 0 0 380px;
+            scroll-snap-align: start;
             border: 1px solid var(--border);
             background: var(--white);
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             overflow: hidden;
         }
 
@@ -433,208 +312,101 @@
             transform: translateY(-5px);
         }
 
-        .article-image {
-            height: 200px;
-            position: relative;
-            overflow: hidden;
-            background: linear-gradient(135deg, #E8F4FF 0%, #D4E8F8 100%);
-        }
-
-        .article-category-badge {
-            position: absolute;
-            top: 1rem; left: 1rem;
-            background: var(--white);
-            padding: 0.4rem 0.8rem;
-            font-size: 0.6rem;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            font-weight: 500;
-        }
-
+        .article-image { height: 220px; position: relative; overflow: hidden; background: linear-gradient(135deg, #E8F4FF 0%, #D4E8F8 100%); }
+        .article-category-badge { position: absolute; top: 1rem; left: 1rem; background: var(--white); padding: 0.4rem 0.8rem; font-size: 0.6rem; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 500; }
         .article-content { padding: 2rem; }
         .article-meta { display: flex; gap: 1.5rem; margin-bottom: 1rem; }
-
-        .article-date, .article-read {
-            font-size: 0.7rem;
-            color: var(--text-gray);
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        .article-title {
-            font-family: 'Didot', 'Bodoni MT', 'Didact Gothic', serif;
-            font-size: 1.3rem;
-            line-height: 1.3;
-            margin-bottom: 1rem;
-            font-weight: 400;
-        }
-
-        .article-excerpt {
-            font-size: 0.85rem;
-            line-height: 1.7;
-            color: var(--text-gray);
-            margin-bottom: 1.5rem;
-            font-weight: 300;
-        }
-
-        .article-link {
-            font-size: 0.7rem;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            color: var(--black);
-            text-decoration: none;
-            font-weight: 500;
-            transition: opacity 0.3s ease;
-        }
-
+        .article-date, .article-read { font-size: 0.7rem; color: var(--text-gray); letter-spacing: 1px; text-transform: uppercase; }
+        .article-title { font-family: 'Didot', 'Bodoni MT', 'Didact Gothic', serif; font-size: 1.3rem; line-height: 1.3; margin-bottom: 1rem; font-weight: 400; }
+        .article-excerpt { font-size: 0.85rem; line-height: 1.7; color: var(--text-gray); margin-bottom: 1.5rem; font-weight: 300; }
+        .article-link { font-size: 0.7rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--black); text-decoration: none; font-weight: 500; transition: opacity 0.3s ease; }
         .article-link:hover { opacity: 0.6; }
+
+        /* Scroll navigation arrows */
+        .scroll-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .scroll-btn {
+            width: 44px; height: 44px;
+            border: 1px solid var(--black);
+            background: var(--white);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            color: var(--black);
+        }
+
+        .scroll-btn:hover { background: var(--black); color: var(--white); }
+
+        .scroll-progress {
+            height: 2px;
+            background: var(--border);
+            margin-top: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .scroll-progress-bar {
+            height: 100%;
+            background: var(--black);
+            width: 0%;
+            transition: width 0.15s ease;
+        }
 
         /* Masthead */
         .masthead-section { padding: 8rem 0; background: var(--black); color: var(--white); }
-
-        .masthead-container {
-            max-width: 900px;
-            margin: 0 auto;
-            text-align: center;
-            padding: 0 3rem;
-        }
-
-        .masthead-label {
-            font-size: 0.65rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            margin-bottom: 2rem;
-            opacity: 0.6;
-        }
-
-        .masthead-name {
-            font-family: 'Didot', 'Bodoni MT', 'Didact Gothic', serif;
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            font-style: italic;
-            font-weight: 400;
-        }
-
-        .masthead-title {
-            font-size: 0.75rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            opacity: 0.8;
-        }
+        .masthead-container { max-width: 900px; margin: 0 auto; text-align: center; padding: 0 3rem; }
+        .masthead-label { font-size: 0.65rem; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 2rem; opacity: 0.6; }
+        .masthead-name { font-family: 'Didot', 'Bodoni MT', 'Didact Gothic', serif; font-size: 2.5rem; margin-bottom: 1rem; font-style: italic; font-weight: 400; }
+        .masthead-title { font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; opacity: 0.8; }
 
         /* Footer */
         footer { background: var(--black); color: var(--white); padding: 6rem 0 3rem; }
-
-        .footer-container {
-            max-width: 1800px;
-            margin: 0 auto;
-            padding: 0 3rem;
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr;
-            gap: 4rem;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            padding-bottom: 3rem;
-            margin-bottom: 3rem;
-        }
-
-        .footer-logo {
-            font-family: 'Futura PT', 'Nunito Sans', 'Avenir Next', 'Century Gothic', sans-serif;
-            font-size: 2rem;
-            letter-spacing: 3px;
-            margin-bottom: 1.5rem;
-            font-weight: 700;
-            text-transform: uppercase;
-        }
-
+        .footer-container { max-width: 1800px; margin: 0 auto; padding: 0 3rem; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 4rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 3rem; margin-bottom: 3rem; }
+        .footer-logo { font-family: 'Futura PT', 'Nunito Sans', 'Avenir Next', 'Century Gothic', sans-serif; font-size: 2rem; letter-spacing: 3px; margin-bottom: 1.5rem; font-weight: 700; text-transform: uppercase; }
         .footer-tagline { font-size: 0.9rem; opacity: 0.6; line-height: 1.6; max-width: 400px; }
-
-        .footer-section-title {
-            font-size: 0.65rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 1.5rem;
-            font-weight: 500;
-        }
-
+        .footer-section-title { font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 1.5rem; font-weight: 500; }
         .footer-links { display: flex; flex-direction: column; gap: 1rem; }
-
-        .footer-link {
-            color: var(--white);
-            text-decoration: none;
-            font-size: 0.85rem;
-            opacity: 0.6;
-            transition: opacity 0.3s ease;
-        }
-
+        .footer-link { color: var(--white); text-decoration: none; font-size: 0.85rem; opacity: 0.6; transition: opacity 0.3s ease; }
         .footer-link:hover { opacity: 1; }
         .social-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
-
-        .social-link {
-            color: var(--white);
-            text-decoration: none;
-            font-size: 0.75rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            opacity: 0.6;
-            transition: opacity 0.3s ease;
-        }
-
+        .social-link { color: var(--white); text-decoration: none; font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; opacity: 0.6; transition: opacity 0.3s ease; }
         .social-link:hover { opacity: 1; }
-
-        .footer-bottom {
-            max-width: 1800px;
-            margin: 0 auto;
-            padding: 0 3rem;
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.7rem;
-            opacity: 0.4;
-            letter-spacing: 1px;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
+        .footer-bottom { max-width: 1800px; margin: 0 auto; padding: 0 3rem; display: flex; justify-content: space-between; font-size: 0.7rem; opacity: 0.4; letter-spacing: 1px; flex-wrap: wrap; gap: 0.5rem; }
 
         /* Animations */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
+        .fade-in { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
         .fade-in.visible { opacity: 1; transform: translateY(0); }
 
         /* ========== RESPONSIVE ========== */
-
-        /* Tablet landscape */
         @media (max-width: 1200px) {
             .hero { grid-template-columns: 1fr; min-height: auto; }
             .hero-left { border-bottom: 1px solid var(--border); }
             .hero-headline { font-size: 3.5rem; }
             .hero-right { min-height: 60vh; }
-
             .brands-grid { grid-template-columns: repeat(2, 1fr); }
             .brand-card { border-bottom: 1px solid var(--border); }
             .brand-card:nth-child(2n) { border-right: none; }
             .brand-card:nth-child(odd) { border-right: 1px solid var(--border); }
             .brand-card:nth-last-child(-n+2) { border-bottom: none; }
-
             .editorial-grid { grid-template-columns: 1fr; }
             .editorial-large { min-height: 500px; }
-
-            .articles-grid { grid-template-columns: repeat(2, 1fr); }
+            .article-card { flex: 0 0 340px; }
         }
 
-        /* Tablet portrait */
         @media (max-width: 968px) {
             .nav-container { padding: 1.2rem 2rem; }
-
             .hamburger { display: flex; }
-
             .nav-links {
                 position: fixed;
                 top: 0; right: -100%;
-                width: 280px;
-                height: 100vh;
+                width: 280px; height: 100vh;
                 background: var(--white);
                 flex-direction: column;
                 justify-content: center;
@@ -643,9 +415,7 @@
                 transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
                 box-shadow: -5px 0 30px rgba(0,0,0,0.1);
             }
-
             .nav-links.open { right: 0; }
-
             .nav-links a { font-size: 0.85rem; letter-spacing: 3px; }
 
             .hero-headline { font-size: 3rem; }
@@ -654,7 +424,6 @@
             .hero-image-overlay { padding: 2rem; }
             .overlay-title { font-size: 1.6rem; }
             .overlay-desc { font-size: 0.85rem; }
-
             .stat-number { font-size: 2.5rem; }
             .stats-grid { gap: 2rem; }
 
@@ -678,7 +447,7 @@
             .editorial-title { font-size: 1.4rem; }
 
             .articles-section { padding: 5rem 0; }
-            .articles-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .article-card { flex: 0 0 300px; }
             .article-content { padding: 1.5rem; }
 
             .masthead-section { padding: 5rem 0; }
@@ -686,22 +455,14 @@
             .masthead-container { padding: 0 2rem; }
 
             footer { padding: 4rem 0 2rem; }
-            .footer-container {
-                grid-template-columns: 1fr;
-                gap: 2.5rem;
-                padding: 0 2rem;
-                padding-bottom: 2.5rem;
-                margin-bottom: 2rem;
-            }
+            .footer-container { grid-template-columns: 1fr; gap: 2.5rem; padding: 0 2rem; padding-bottom: 2.5rem; margin-bottom: 2rem; }
             .footer-logo { font-size: 1.5rem; }
             .footer-bottom { padding: 0 2rem; flex-direction: column; text-align: center; }
         }
 
-        /* Mobile */
         @media (max-width: 600px) {
             .nav-container { padding: 1rem 1.5rem; }
             .logo { font-size: 1.2rem; letter-spacing: 2px; }
-
             .hero { margin-top: 60px; }
             .hero-left { padding: 3rem 1.5rem; }
             .hero-eyebrow { font-size: 0.6rem; margin-bottom: 2rem; letter-spacing: 2px; }
@@ -711,7 +472,6 @@
             .overlay-title { font-size: 1.3rem; }
             .overlay-desc { font-size: 0.8rem; line-height: 1.5; }
             .overlay-tag { font-size: 0.6rem; margin-bottom: 0.5rem; }
-
             .stat-number { font-size: 2rem; }
             .stat-label { font-size: 0.8rem; }
             .stats-grid { gap: 1.5rem; margin-bottom: 2rem; }
@@ -740,11 +500,12 @@
             .editorial-desc { font-size: 0.8rem; }
 
             .articles-section { padding: 4rem 0; }
-            .articles-grid { gap: 1.5rem; }
+            .article-card { flex: 0 0 280px; }
             .article-image { height: 180px; }
             .article-content { padding: 1.25rem; }
             .article-title { font-size: 1.1rem; }
             .article-excerpt { font-size: 0.8rem; margin-bottom: 1rem; }
+            .scroll-btn { width: 36px; height: 36px; font-size: 1rem; }
 
             .masthead-section { padding: 4rem 0; }
             .masthead-container { padding: 0 1.5rem; }
@@ -762,7 +523,6 @@
             .footer-bottom { padding: 0 1.5rem; font-size: 0.6rem; }
         }
 
-        /* Small mobile */
         @media (max-width: 400px) {
             .hero-headline { font-size: 1.8rem; }
             .stat-number { font-size: 1.7rem; }
@@ -770,6 +530,7 @@
             .brand-image { height: 200px; }
             .editorial-large { min-height: 280px; }
             .editorial-card { min-height: 200px; }
+            .article-card { flex: 0 0 260px; }
         }
     </style>
 </head>
@@ -947,103 +708,114 @@
         </div>
     </section>
 
+    <!-- Articles with Horizontal Scroll -->
     <section class="articles-section" id="articles">
         <div class="section-container">
             <div class="section-header">
                 <h2 class="section-title">ARTICLES</h2>
-                <p class="section-subtitle">Latest Stories</p>
+                <div class="scroll-controls">
+                    <p class="section-subtitle" style="margin-right:1.5rem;">Latest Stories</p>
+                    <button class="scroll-btn" onclick="scrollArticles(-1)" aria-label="Previous">←</button>
+                    <button class="scroll-btn" onclick="scrollArticles(1)" aria-label="Next">→</button>
+                </div>
             </div>
-            <div class="articles-grid">
-                <article class="article-card">
-                    <div class="article-image" style="background-image:url('https://i.postimg.cc/hGKm9B9J/thumbnail.jpg');background-size:cover;background-position:center;">
-                        <span class="article-category-badge">Wellness</span>
-                    </div>
-                    <div class="article-content">
-                        <div class="article-meta">
-                            <span class="article-date">Feb 4, 2026</span>
-                            <span class="article-read">5 min read</span>
-                        </div>
-                        <h3 class="article-title">The Revolver Effect: Why Old-School Power Is Showing Up in Today's Trends</h3>
-                        <p class="article-excerpt">If you've been paying attention lately, you might've noticed something interesting: the past is everywhere. Flip phones are back.</p>
-                        <a href="https://www.alphavogue.co/The-Revolver-Effect-article.html" class="article-link">Read More →</a>
-                    </div>
-                </article>
-                
-                <article class="article-card">
-                    <div class="article-image" style="background-image:url('https://images.pexels.com/photos/129112/pexels-photo-129112.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');background-size:cover;background-position:center;">
-                        <span class="article-category-badge">Culture</span>
-                    </div>
-                    <div class="article-content">
-                        <div class="article-meta">
-                            <span class="article-date">Feb 10, 2026</span>
-                            <span class="article-read">4 min read</span>
-                        </div>
-                        <h3 class="article-title">This Week in U.S. Politics: Trump, the White House & ICE</h3>
-                        <p class="article-excerpt">Here's the latest on what President Donald Trump and his administration are doing right now, including immigration enforcement actions by ICE.</p>
-                        <a href="https://www.alphavogue.co/This-Week-in-U.S-Politics-Trump.html" class="article-link">Read More →</a>
-                    </div>
-                </article>
-                
-                <article class="article-card">
-                    <div class="article-image" style="background-image:url('https://images.pexels.com/photos/274886/pexels-photo-274886.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');background-size:cover;background-position:center;">
-                        <span class="article-category-badge">Fashion</span>
-                    </div>
-                    <div class="article-content">
-                        <div class="article-meta">
-                            <span class="article-date">Feb 17, 2026</span>
-                            <span class="article-read">6 min read</span>
-                        </div>
-                        <h3 class="article-title">Ongoing Wars in 2026: A Neutral Overview</h3>
-                        <p class="article-excerpt">As of this week, several armed conflicts are continuing around the world. These wars involve governments, armed groups, and international actors.</p>
-                        <a href="https://www.alphavogue.co/Ongoing-Wars-in-2026-A-Neutral-Overview.html" class="article-link">Read More →</a>
-                    </div>
-                </article>
 
-                <article class="article-card">
-                    <div class="article-image" style="background-image:url('https://images.pexels.com/photos/358382/pexels-photo-358382.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');background-size:cover;background-position:center;">
-                        <span class="article-category-badge">Fashion</span>
-                    </div>
-                    <div class="article-content">
-                        <div class="article-meta">
-                            <span class="article-date">Feb 17, 2026</span>
-                            <span class="article-read">6 min read</span>
+            <div class="articles-scroll-wrapper">
+                <div class="articles-scroll-track" id="articlesTrack">
+                    <article class="article-card">
+                        <div class="article-image" style="background-image:url('https://i.postimg.cc/hGKm9B9J/thumbnail.jpg');background-size:cover;background-position:center;">
+                            <span class="article-category-badge">Wellness</span>
                         </div>
-                        <h3 class="article-title">The Business World in 2026: Growth, Technology, and Global Shifts</h3>
-                        <p class="article-excerpt">The global business landscape in 2026 is defined by rapid technological innovation, economic adjustment, and shifting power between regions.</p>
-                        <a href="https://www.alphavogue.co/The-Business-World-in-2026.html" class="article-link">Read More →</a>
-                    </div>
-                </article>
+                        <div class="article-content">
+                            <div class="article-meta">
+                                <span class="article-date">Feb 4, 2026</span>
+                                <span class="article-read">5 min read</span>
+                            </div>
+                            <h3 class="article-title">The Revolver Effect: Why Old-School Power Is Showing Up in Today's Trends</h3>
+                            <p class="article-excerpt">If you've been paying attention lately, you might've noticed something interesting: the past is everywhere. Flip phones are back.</p>
+                            <a href="https://www.alphavogue.co/The-Revolver-Effect-article.html" class="article-link">Read More →</a>
+                        </div>
+                    </article>
 
-                <article class="article-card">
-                    <div class="article-image" style="background-image:url('https://images.pexels.com/photos/6473102/pexels-photo-6473102.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');background-size:cover;background-position:center;">
-                        <span class="article-category-badge">Fashion</span>
-                    </div>
-                    <div class="article-content">
-                        <div class="article-meta">
-                            <span class="article-date">Feb 17, 2026</span>
-                            <span class="article-read">6 min read</span>
+                    <article class="article-card">
+                        <div class="article-image" style="background-image:url('https://images.pexels.com/photos/129112/pexels-photo-129112.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');background-size:cover;background-position:center;">
+                            <span class="article-category-badge">Culture</span>
                         </div>
-                        <h3 class="article-title">Gen Alpha Is Building Empires Before 18</h3>
-                        <p class="article-excerpt">Why our generation isn't "too young" — we're just early. The future isn't waiting — and neither are we.</p>
-                        <a href="https://www.alphavogue.co/Gen-Alpha-Is-Building-Empires-Before-18.html" class="article-link">Read More →</a>
-                    </div>
-                </article>
+                        <div class="article-content">
+                            <div class="article-meta">
+                                <span class="article-date">Feb 10, 2026</span>
+                                <span class="article-read">4 min read</span>
+                            </div>
+                            <h3 class="article-title">This Week in U.S. Politics: Trump, the White House & ICE</h3>
+                            <p class="article-excerpt">Here's the latest on what President Donald Trump and his administration are doing right now, including immigration enforcement actions by ICE.</p>
+                            <a href="https://www.alphavogue.co/This-Week-in-U.S-Politics-Trump.html" class="article-link">Read More →</a>
+                        </div>
+                    </article>
 
-                <article class="article-card">
-                    <div class="article-image" style="background-image:url('https://images.pexels.com/photos/4468974/pexels-photo-4468974.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');background-size:cover;background-position:center;">
-                        <span class="article-category-badge">Fashion</span>
-                    </div>
-                    <div class="article-content">
-                        <div class="article-meta">
-                            <span class="article-date">Feb 17, 2026</span>
-                            <span class="article-read">6 min read</span>
+                    <article class="article-card">
+                        <div class="article-image" style="background-image:url('https://images.pexels.com/photos/274886/pexels-photo-274886.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');background-size:cover;background-position:center;">
+                            <span class="article-category-badge">World</span>
                         </div>
-                        <h3 class="article-title">World Politics This Week: Leadership, Policy, and Global Shifts</h3>
-                        <p class="article-excerpt">This week in world politics, leaders across Europe, Asia, and beyond are dealing with economic pressures, domestic reforms, and shifting international alliances.</p>
-                        <a href="https://www.alphavogue.co/World-Politics-This-Week.html" class="article-link">Read More →</a>
-                    </div>
-                </article>
-                
+                        <div class="article-content">
+                            <div class="article-meta">
+                                <span class="article-date">Feb 17, 2026</span>
+                                <span class="article-read">6 min read</span>
+                            </div>
+                            <h3 class="article-title">Ongoing Wars in 2026: A Neutral Overview</h3>
+                            <p class="article-excerpt">As of this week, several armed conflicts are continuing around the world. These wars involve governments, armed groups, and international actors.</p>
+                            <a href="https://www.alphavogue.co/Ongoing-Wars-in-2026-A-Neutral-Overview.html" class="article-link">Read More →</a>
+                        </div>
+                    </article>
+
+                    <article class="article-card">
+                        <div class="article-image" style="background-image:url('https://images.pexels.com/photos/358382/pexels-photo-358382.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');background-size:cover;background-position:center;">
+                            <span class="article-category-badge">Business</span>
+                        </div>
+                        <div class="article-content">
+                            <div class="article-meta">
+                                <span class="article-date">Feb 17, 2026</span>
+                                <span class="article-read">6 min read</span>
+                            </div>
+                            <h3 class="article-title">The Business World in 2026: Growth, Technology, and Global Shifts</h3>
+                            <p class="article-excerpt">The global business landscape in 2026 is defined by rapid technological innovation, economic adjustment, and shifting power between regions.</p>
+                            <a href="https://www.alphavogue.co/The-Business-World-in-2026.html" class="article-link">Read More →</a>
+                        </div>
+                    </article>
+
+                    <article class="article-card">
+                        <div class="article-image" style="background-image:url('https://images.pexels.com/photos/6473102/pexels-photo-6473102.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');background-size:cover;background-position:center;">
+                            <span class="article-category-badge">Gen Alpha</span>
+                        </div>
+                        <div class="article-content">
+                            <div class="article-meta">
+                                <span class="article-date">Feb 17, 2026</span>
+                                <span class="article-read">6 min read</span>
+                            </div>
+                            <h3 class="article-title">Gen Alpha Is Building Empires Before 18</h3>
+                            <p class="article-excerpt">Why our generation isn't "too young" — we're just early. The future isn't waiting — and neither are we.</p>
+                            <a href="https://www.alphavogue.co/Gen-Alpha-Is-Building-Empires-Before-18.html" class="article-link">Read More →</a>
+                        </div>
+                    </article>
+
+                    <article class="article-card">
+                        <div class="article-image" style="background-image:url('https://images.pexels.com/photos/4468974/pexels-photo-4468974.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');background-size:cover;background-position:center;">
+                            <span class="article-category-badge">Politics</span>
+                        </div>
+                        <div class="article-content">
+                            <div class="article-meta">
+                                <span class="article-date">Feb 17, 2026</span>
+                                <span class="article-read">6 min read</span>
+                            </div>
+                            <h3 class="article-title">World Politics This Week: Leadership, Policy, and Global Shifts</h3>
+                            <p class="article-excerpt">This week in world politics, leaders across Europe, Asia, and beyond are dealing with economic pressures, domestic reforms, and shifting international alliances.</p>
+                            <a href="https://www.alphavogue.co/World-Politics-This-Week.html" class="article-link">Read More →</a>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="scroll-progress">
+                    <div class="scroll-progress-bar" id="scrollProgressBar"></div>
+                </div>
             </div>
         </div>
     </section>
@@ -1104,6 +876,7 @@
             });
         });
 
+        // Intersection Observer for fade-ins
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
         }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
@@ -1113,15 +886,27 @@
             observer.observe(el);
         });
 
-        let ticking = false;
-        window.addEventListener('scroll', () => {
-            if (!ticking) {
-                window.requestAnimationFrame(() => {
-                    ticking = false;
-                });
-                ticking = true;
-            }
+        // Articles horizontal scroll
+        const track = document.getElementById('articlesTrack');
+        const bar = document.getElementById('scrollProgressBar');
+
+        function scrollArticles(dir) {
+            const cardW = track.querySelector('.article-card').offsetWidth + 32;
+            track.scrollBy({ left: dir * cardW, behavior: 'smooth' });
+        }
+
+        track.addEventListener('scroll', () => {
+            const max = track.scrollWidth - track.clientWidth;
+            const pct = max > 0 ? (track.scrollLeft / max) * 100 : 0;
+            bar.style.width = pct + '%';
         });
+
+        // Touch drag support
+        let isDrag = false, startX, scrollStart;
+        track.addEventListener('mousedown', e => { isDrag = true; startX = e.pageX; scrollStart = track.scrollLeft; track.style.cursor = 'grabbing'; });
+        track.addEventListener('mousemove', e => { if (!isDrag) return; e.preventDefault(); track.scrollLeft = scrollStart - (e.pageX - startX); });
+        track.addEventListener('mouseup', () => { isDrag = false; track.style.cursor = ''; });
+        track.addEventListener('mouseleave', () => { isDrag = false; track.style.cursor = ''; });
     </script>
 </body>
 </html>
