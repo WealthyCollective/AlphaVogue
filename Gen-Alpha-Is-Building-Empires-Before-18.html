@@ -292,7 +292,7 @@
 <body>
     <nav>
         <div class="nav-container">
-            <a href="#" class="logo">ALPHA VOGUE</a>
+            <a href="index.html" class="logo"><img src="https://i.postimg.cc/NfrD08fC/AVLogo.png" alt="Alpha Vogue" style="height:40px;"></a>
             <ul class="nav-links">
                 <li><a href="#">Articles</a></li>
                 <li><a href="#subscribesec" class="subscribe-link">Subscribe</a></li>
@@ -469,18 +469,38 @@
             <h3 class="newsletter-title">Stay Ahead of Culture</h3>
             <p class="newsletter-desc">Get the latest on Gen-Alpha trends, emerging brands, and the future of style delivered to your inbox.</p>
             <div class="newsletter-form">
-                <input type="email" class="newsletter-input" placeholder="Enter your email">
-                <button class="newsletter-btn">Subscribe</button>
+                <input type="email" class="newsletter-input" id="newsletter-email" placeholder="Enter your email">
+                <button class="newsletter-btn" onclick="handleSubscribe()">Subscribe</button>
             </div>
+            <p id="subscribe-msg" style="margin-top:1rem;font-size:0.85rem;opacity:0.7;display:none;"></p>
         </div>
     </section>
 
     <footer>
         <div class="footer-container">
-            <div class="footer-logo">ALPHA VOGUE</div>
+            <div class="footer-logo"><img src="https://i.postimg.cc/NfrD08fC/AVLogo.png" alt="Alpha Vogue" style="height:36px;"></div>
             <div class="footer-links"></div>
-            <div class="footer-copy">© 2026 Alpha Vogue</div>
+            <div class="footer-copy">&copy; 2026 Alpha Vogue</div>
         </div>
     </footer>
+
+    <script>
+        function handleSubscribe() {
+            var email = document.getElementById('newsletter-email').value.trim();
+            var msg = document.getElementById('subscribe-msg');
+            if (!email || email.indexOf('@') === -1) {
+                msg.style.display = 'block';
+                msg.style.color = '#ff6b6b';
+                msg.textContent = 'Please enter a valid email address.';
+                return;
+            }
+            var subject = encodeURIComponent('New Alpha Vogue Subscriber');
+            var body = encodeURIComponent('Hi Alpha Vogue,\n\nI would like to subscribe to your newsletter.\n\nMy email: ' + email + '\n\nThank you!');
+            window.location.href = 'mailto:alphavoguehq@gmail.com?subject=' + subject + '&body=' + body;
+            msg.style.display = 'block';
+            msg.style.color = '#4CAF50';
+            msg.textContent = 'Opening your email client — thank you for subscribing!';
+        }
+    </script>
 </body>
 </html>
