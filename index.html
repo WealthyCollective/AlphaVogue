@@ -9,1236 +9,1098 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;300;400;500;600;700;800&family=Didact+Gothic&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --black: #000000;
-            --white: #FFFFFF;
-            --off-white: #FAFAFA;
-            --light-gray: #F5F5F5;
-            --mid-gray: #CCCCCC;
-            --text-gray: #666666;
-            --accent-red: #E31E24;
-            --border: #E8E8E8;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body {
-            font-family: 'Futura PT', 'Nunito Sans', 'Avenir Next', 'Century Gothic', -apple-system, sans-serif;
-            background: var(--white);
-            color: var(--black);
-            line-height: 1.5;
-            font-weight: 400;
-            letter-spacing: 0.3px;
-            overflow-x: hidden;
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0; width: 100%;
-            background: rgba(255,255,255,0.98);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .nav-container {
-            max-width: 1800px;
-            margin: 0 auto;
-            padding: 1.5rem 3rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-family: 'Futura PT', 'Nunito Sans', 'Avenir Next', 'Century Gothic', sans-serif;
-            font-size: 1.5rem;
-            letter-spacing: 3px;
-            text-decoration: none;
-            color: var(--black);
-            font-weight: 700;
-            text-transform: uppercase;
-            flex-shrink: 0;
-        }
-
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-            padding: 5px;
-            z-index: 1001;
-        }
-
-        .hamburger span {
-            width: 24px; height: 2px;
-            background: var(--black);
-            transition: all 0.3s ease;
-        }
-
-        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-        .hamburger.active span:nth-child(2) { opacity: 0; }
-        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
-
-        .nav-links {
-            display: flex;
-            gap: 3rem;
-            list-style: none;
-            align-items: center;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--black);
-            font-size: 0.75rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            font-weight: 400;
-            transition: opacity 0.3s ease;
-        }
-
-        .nav-links a:hover { opacity: 0.6; }
-        .subscribe-link { color: var(--accent-red) !important; font-weight: 500; }
-
-        /* Hero */
-        /* FIX #6: margin-top is now set via scroll-margin-top on section, 
-           not on .hero itself, and the hero uses padding-top instead so
-           it always clears the actual nav height */
-        .hero {
-            margin-top: 0;
-            padding-top: 80px;
-            max-width: 1800px;
-            margin-left: auto;
-            margin-right: auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            min-height: 90vh;
-            /* FIX #9: scroll-margin-top so nav doesn't overlap when anchor-linked */
-            scroll-margin-top: 80px;
-        }
-
-        .hero-left {
-            background: var(--off-white);
-            padding: 6rem 4rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .hero-eyebrow {
-            font-size: 0.7rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            margin-bottom: 3rem;
-            font-weight: 500;
-            color: var(--text-gray);
-        }
-
-        .hero-headline {
-            font-family: 'Futura PT', 'Nunito Sans', 'Avenir Next', 'Century Gothic', sans-serif;
-            font-size: 4.5rem;
-            line-height: 0.9;
-            letter-spacing: 1px;
-            margin-bottom: 3rem;
-            font-weight: 700;
-            text-transform: uppercase;
-        }
-
-        .hero-headline-line { display: block; }
-        .stats-grid { display: grid; gap: 3rem; margin-bottom: 3rem; }
-        .stat-item { border-left: 3px solid var(--black); padding-left: 1.5rem; }
-
-        .stat-number {
-            font-family: 'Futura PT', 'Nunito Sans', 'Avenir Next', 'Century Gothic', sans-serif;
-            font-size: 3rem; line-height: 1; letter-spacing: 1px;
-            margin-bottom: 0.5rem; font-weight: 700;
-        }
-
-        .stat-label { font-size: 0.9rem; color: var(--text-gray); font-weight: 300; line-height: 1.6; }
-
-        .hero-cta {
-            display: inline-flex;
-            align-items: center;
-            gap: 1rem;
-            color: var(--black);
-            text-decoration: none;
-            font-size: 0.75rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            font-weight: 500;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid var(--black);
-            transition: all 0.3s ease;
-            width: fit-content;
-        }
-
-        .hero-cta:hover { gap: 1.5rem; }
-
-        .hero-right {
-            position: relative;
-            overflow: hidden;
-            /* FIX #7: removed the fallback gradient from inline z-index:-1 hack;
-               set it here as the actual background so it always shows */
-            background: linear-gradient(135deg, #E5F4FF 0%, #B6D4E8 50%, #87CEEB 100%);
-            min-height: 500px;
-        }
-
-        .hero-image {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .hero-image-overlay {
-            position: absolute;
-            bottom: 0; left: 0; right: 0;
-            padding: 3rem;
-            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 100%);
-            color: var(--white);
-            z-index: 3;
-        }
-
-        .overlay-tag { font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 1rem; font-weight: 400; opacity: 0.9; }
-        .overlay-title { font-family: 'Didot', 'Bodoni MT', 'Didact Gothic', serif; font-size: 2rem; margin-bottom: 0.8rem; line-height: 1.2; font-weight: 400; }
-        .overlay-desc { font-size: 0.95rem; opacity: 0.9; font-weight: 300; line-height: 1.7; }
-
-        /* Marquee */
-        .marquee-section { padding: 0.8rem 0; background: var(--black); overflow: hidden; }
-        .marquee { display: flex; animation: scroll 30s linear infinite; gap: 3rem; }
-        .marquee-item {
-            font-family: 'Futura PT', 'Nunito Sans', 'Avenir Next', 'Century Gothic', sans-serif;
-            font-size: 0.7rem; color: var(--white); white-space: nowrap;
-            letter-spacing: 2px; font-weight: 500; text-transform: uppercase;
-        }
-
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-        /* Sections */
-        .brands-section { padding: 8rem 0; background: var(--white); }
-        .section-container { max-width: 1800px; margin: 0 auto; padding: 0 3rem; }
-
-        /* FIX #9: scroll-margin-top on all anchor target sections */
-        section[id] { scroll-margin-top: 80px; }
-
-        .section-header {
-            margin-bottom: 5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 2rem;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .section-title {
-            font-family: 'Futura PT', 'Nunito Sans', 'Avenir Next', 'Century Gothic', sans-serif;
-            font-size: 3rem; letter-spacing: 2px; font-weight: 700; text-transform: uppercase;
-        }
-
-        .section-subtitle { font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-gray); font-weight: 300; }
-
-        /* Brands Grid */
-        .brands-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 0;
-            border: 1px solid var(--border);
-        }
-
-        .brand-card {
-            border-right: 1px solid var(--border);
-            /* FIX #3: removed border-bottom:none so cards have borders by default;
-               we'll only remove borders on the edges that sit against the outer border */
-            transition: all 0.3s ease;
-            background: var(--white);
-        }
-
-        .brand-card:last-child { border-right: none; }
-        .brand-card:hover { background: var(--off-white); z-index: 10; }
-
-        .brand-image {
-            width: 100%;
-            height: 400px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-
-        /* FIX #5: editorial-image needs position:absolute + explicit height 
-           to reliably fill the parent. See editorial-large below. */
-        .editorial-large,
-        .editorial-card {
-            position: relative;
-            overflow: hidden;
-            border: 1px solid var(--border);
-        }
-
-        .editorial-large { min-height: 700px; }
-        .editorial-card { min-height: 350px; flex: 1; }
-
-        .editorial-image {
-            /* FIX #5: absolutely positioned to fill the parent reliably
-               regardless of whether parent uses min-height or height */
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: linear-gradient(135deg, #F5F5F5 0%, #E0E0E0 100%);
-            background-size: cover;
-            background-position: center;
-        }
-
-        .brand-image-1 { background: linear-gradient(135deg, #FFE5E5 0%, #FFB6C1 100%); }
-        .brand-image-2 { background: linear-gradient(135deg, #E5F4FF 0%, #B6D4E8 100%); }
-        .brand-image-3 { background: linear-gradient(135deg, #FFE8E0 0%, #FFD4C4 100%); }
-        .brand-image-4 { background: linear-gradient(135deg, #F0E5FF 0%, #D4C4E8 100%); }
-
-        .brand-content { padding: 2.5rem; }
-        .brand-category { font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-gray); margin-bottom: 1rem; }
-        .brand-name { font-family: 'Didot', 'Bodoni MT', 'Didact Gothic', serif; font-size: 1.5rem; margin-bottom: 1rem; line-height: 1.3; font-weight: 400; }
-        .brand-description { font-size: 0.85rem; line-height: 1.8; color: var(--text-gray); margin-bottom: 1.5rem; font-weight: 300; }
-        .brand-tags { display: flex; gap: 0.6rem; flex-wrap: wrap; }
-        .tag { font-size: 0.6rem; letter-spacing: 1px; text-transform: uppercase; padding: 0.4rem 0.9rem; border: 1px solid var(--border); font-weight: 400; transition: all 0.3s ease; }
-        .tag:hover { background: var(--black); color: var(--white); }
-
-        /* Editorial */
-        .editorial-section { padding: 8rem 0; background: var(--off-white); }
-        .editorial-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 3rem; margin-top: 5rem; }
-        .editorial-overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 3rem; background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, transparent 100%); color: var(--white); z-index: 2; }
-        .editorial-tag { font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 1rem; }
-        .editorial-title { font-family: 'Didot', 'Bodoni MT', 'Didact Gothic', serif; font-size: 1.8rem; margin-bottom: 1rem; line-height: 1.2; font-weight: 400; }
-        .editorial-desc { font-size: 0.9rem; opacity: 0.9; line-height: 1.7; }
-        .editorial-small { display: flex; flex-direction: column; gap: 3rem; }
-
-        /* Articles — Horizontal Scroll Carousel */
-        .articles-section { padding: 8rem 0; background: var(--white); overflow: hidden; }
-
-        .articles-scroll-wrapper {
-            position: relative;
-            margin-top: 0;
-        }
-
-        .articles-scroll-track {
-            display: flex;
-            gap: 2rem;
-            overflow-x: auto;
-            scroll-behavior: smooth;
-            scroll-snap-type: x mandatory;
-            -webkit-overflow-scrolling: touch;
-            padding-bottom: 2rem;
-            scrollbar-width: none;
-            cursor: grab;
-        }
-
-        .articles-scroll-track::-webkit-scrollbar { display: none; }
-        .articles-scroll-track.dragging { cursor: grabbing; scroll-behavior: auto; }
-
-        .article-card {
-            flex: 0 0 380px;
-            scroll-snap-align: start;
-            border: 1px solid var(--border);
-            background: var(--white);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            overflow: hidden;
-        }
-
-        .article-card:hover {
-            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
-            transform: translateY(-5px);
-        }
-
-        .article-image { height: 220px; position: relative; overflow: hidden; background: linear-gradient(135deg, #E8F4FF 0%, #D4E8F8 100%); background-size: cover; background-position: center; }
-        .article-category-badge {
-            position: absolute;
-            top: 1rem; left: 1rem;
-            background: var(--white);
-            color: var(--black);
-            text-decoration: none;
-            padding: 0.4rem 0.8rem;
-            font-size: 0.6rem;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            font-weight: 500;
-            pointer-events: none;
-        }
-        .article-image-link { display: block; }
-        .article-image-link .article-image { transition: opacity 0.3s ease; }
-        .article-image-link:hover .article-image { opacity: 0.88; }
-        .article-title-link { display: block; text-decoration: none; color: inherit; }
-        .article-title-link:hover .article-title { opacity: 0.65; }
-        .article-title { font-family: 'Didot', 'Bodoni MT', 'Didact Gothic', serif; font-size: 1.3rem; line-height: 1.3; margin-bottom: 1rem; font-weight: 400; transition: opacity 0.3s ease; }
-        .article-excerpt { font-size: 0.85rem; line-height: 1.7; color: var(--text-gray); margin-bottom: 1.5rem; font-weight: 300; }
-        .article-link { font-size: 0.7rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--black); text-decoration: none; font-weight: 500; transition: opacity 0.3s ease; }
-        .article-link:hover { opacity: 0.6; }
-
-        /* Scroll navigation arrows */
-        .scroll-controls {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .scroll-btn {
-            width: 44px; height: 44px;
-            border: 1px solid var(--black);
-            background: var(--white);
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            transition: all 0.3s ease;
-            color: var(--black);
-        }
-
-        .scroll-btn:hover { background: var(--black); color: var(--white); }
-
-        /* FIX #10: removed redundant margin-top: 0 */
-        .scroll-progress {
-            height: 2px;
-            background: var(--border);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .scroll-progress-bar {
-            height: 100%;
-            background: var(--black);
-            width: 0%;
-            transition: width 0.15s ease;
-        }
-
-        /* Masthead */
-        .masthead-section { padding: 8rem 0; background: var(--black); color: var(--white); }
-        .masthead-container { max-width: 900px; margin: 0 auto; text-align: center; padding: 0 3rem; }
-        .masthead-label { font-size: 0.65rem; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 2rem; opacity: 0.6; }
-        .masthead-name { font-family: 'Didot', 'Bodoni MT', 'Didact Gothic', serif; font-size: 2.5rem; margin-bottom: 1rem; font-style: italic; font-weight: 400; }
-        .masthead-title { font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; opacity: 0.8; }
-
-        /* Footer */
-        footer { background: var(--black); color: var(--white); padding: 6rem 0 3rem; }
-        .footer-container { max-width: 1800px; margin: 0 auto; padding: 0 3rem; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 4rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 3rem; margin-bottom: 3rem; }
-        .footer-logo { font-family: 'Futura PT', 'Nunito Sans', 'Avenir Next', 'Century Gothic', sans-serif; font-size: 2rem; letter-spacing: 3px; margin-bottom: 1.5rem; font-weight: 700; text-transform: uppercase; }
-        .footer-tagline { font-size: 0.9rem; opacity: 0.6; line-height: 1.6; max-width: 400px; }
-        .footer-section-title { font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 1.5rem; font-weight: 500; }
-        .footer-links { display: flex; flex-direction: column; gap: 1rem; }
-        .footer-link { color: var(--white); text-decoration: none; font-size: 0.85rem; opacity: 0.6; transition: opacity 0.3s ease; }
-        .footer-link:hover { opacity: 1; }
-        .social-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
-        .social-link { color: var(--white); text-decoration: none; font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; opacity: 0.6; transition: opacity 0.3s ease; }
-        .social-link:hover { opacity: 1; }
-        .footer-bottom { max-width: 1800px; margin: 0 auto; padding: 0 3rem; display: flex; justify-content: space-between; font-size: 0.7rem; opacity: 0.4; letter-spacing: 1px; flex-wrap: wrap; gap: 0.5rem; }
-
-        /* Animations */
-        .fade-in { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
-        .fade-in.visible { opacity: 1; transform: translateY(0); }
-
-        /* ========== MISSION SECTION ========== */
-        .mission-section {
-            background: var(--black);
-            color: var(--white);
-            padding: 7rem 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* Subtle texture overlay */
-        .mission-section::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: repeating-linear-gradient(
-                0deg,
-                transparent,
-                transparent 79px,
-                rgba(255,255,255,0.03) 79px,
-                rgba(255,255,255,0.03) 80px
-            );
-            pointer-events: none;
-        }
-
-        .mission-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 3rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .mission-label {
-            font-size: 0.65rem;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            color: var(--accent-red);
-            margin-bottom: 2rem;
-            font-weight: 500;
-        }
-
-        .mission-headline {
-            font-family: 'Futura PT', 'Nunito Sans', 'Avenir Next', 'Century Gothic', sans-serif;
-            font-size: 3.2rem;
-            font-weight: 700;
-            line-height: 1.1;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            margin-bottom: 2.5rem;
-        }
-
-        .mission-headline em {
-            font-style: normal;
-            color: var(--accent-red);
-        }
-
-        .mission-body {
-            font-size: 1.05rem;
-            line-height: 1.8;
-            color: rgba(255,255,255,0.75);
-            max-width: 780px;
-            margin-bottom: 4rem;
-            font-weight: 300;
-        }
-
-        .mission-pillars {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 0;
-            border: 1px solid rgba(255,255,255,0.12);
-            margin-bottom: 4rem;
-        }
-
-        .mission-pillar {
-            padding: 2.5rem 2rem;
-            border-right: 1px solid rgba(255,255,255,0.12);
-            transition: background 0.3s ease;
-        }
-
-        .mission-pillar:last-child { border-right: none; }
-        .mission-pillar:hover { background: rgba(255,255,255,0.04); }
-
-        .pillar-icon {
-            font-size: 1.6rem;
-            margin-bottom: 1rem;
-            display: block;
-        }
-
-        .pillar-label {
-            font-size: 0.65rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            font-weight: 600;
-            color: var(--white);
-            margin-bottom: 0.8rem;
-        }
-
-        .pillar-text {
-            font-size: 0.82rem;
-            line-height: 1.7;
-            color: rgba(255,255,255,0.55);
-            font-weight: 300;
-        }
-
-        .mission-cta-row {
-            display: flex;
-            align-items: center;
-            gap: 2.5rem;
-            flex-wrap: wrap;
-        }
-
-        .mission-cta-primary {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.6rem;
-            color: var(--white);
-            text-decoration: none;
-            font-size: 0.75rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            font-weight: 500;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid var(--accent-red);
-            transition: all 0.3s ease;
-        }
-
-        .mission-cta-primary:hover { color: var(--accent-red); }
-
-        .mission-cta-tag {
-            font-size: 0.7rem;
-            color: rgba(255,255,255,0.35);
-            letter-spacing: 1px;
-            font-style: italic;
-        }
-
-        /* ========== RESPONSIVE ========== */
-        @media (max-width: 1200px) {
-            /* FIX #6: keep padding-top in sync with fixed nav height */
-            .hero { grid-template-columns: 1fr; min-height: auto; padding-top: 80px; }            .hero-left { border-bottom: 1px solid var(--border); }
-            .hero-headline { font-size: 3.5rem; }
-            .hero-right { min-height: 60vh; }
-
-            /* FIX #3: 2-column layout — add separators between rows */
-            .brands-grid { grid-template-columns: repeat(2, 1fr); }
-            .brand-card { border-bottom: 1px solid var(--border); }
-            .brand-card:nth-child(2n) { border-right: none; }
-            .brand-card:nth-child(odd) { border-right: 1px solid var(--border); }
-            /* last row (cards 3 & 4) sits against the outer border, remove bottom */
-            .brand-card:nth-last-child(-n+2) { border-bottom: none; }
-
-            .editorial-grid { grid-template-columns: 1fr; }
-            .editorial-large { min-height: 500px; }
-            .article-card { flex: 0 0 340px; }
-        }
-
-        @media (max-width: 968px) {
-            .mission-pillars { grid-template-columns: repeat(2, 1fr); }
-            .mission-pillar:nth-child(2) { border-right: none; }
-            .mission-pillar:nth-child(1),
-            .mission-pillar:nth-child(2) { border-bottom: 1px solid rgba(255,255,255,0.12); }
-            .mission-headline { font-size: 2.2rem; }
-            .mission-container { padding: 0 2rem; }
-            .nav-container { padding: 1.2rem 2rem; }
-            .hamburger { display: flex; }
-            .nav-links {
-                position: fixed;
-                top: 0; right: -100%;
-                width: 280px; height: 100vh;
-                background: var(--white);
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                gap: 2.5rem;
-                transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-                box-shadow: -5px 0 30px rgba(0,0,0,0.1);
-            }
-            .nav-links.open { right: 0; }
-            .nav-links a { font-size: 0.85rem; letter-spacing: 3px; }
-
-            .hero-headline { font-size: 3rem; }
-            .hero-left { padding: 4rem 2rem; }
-            .hero-right { min-height: 50vh; }
-            .hero-image-overlay { padding: 2rem; }
-            .overlay-title { font-size: 1.6rem; }
-            .overlay-desc { font-size: 0.85rem; }
-            .stat-number { font-size: 2.5rem; }
-            .stats-grid { gap: 2rem; }
-
-            .section-container { padding: 0 2rem; }
-            .section-title { font-size: 2rem; }
-            .section-header { margin-bottom: 3rem; }
-
-            .brands-section { padding: 5rem 0; }
-            .brands-grid { grid-template-columns: 1fr; }
-            /* FIX #3: 1-column layout — all cards get bottom border except last */
-            .brand-card { border-right: none !important; border-bottom: 1px solid var(--border); }
-            .brand-card:last-child { border-bottom: none; }
-            .brand-image { height: 300px; }
-            .brand-content { padding: 2rem; }
-            .brand-name { font-size: 1.3rem; }
-
-            .editorial-section { padding: 5rem 0; }
-            .editorial-grid { margin-top: 3rem; gap: 2rem; }
-            .editorial-large { min-height: 400px; }
-            .editorial-card { min-height: 280px; }
-            .editorial-overlay { padding: 2rem; }
-            .editorial-title { font-size: 1.4rem; }
-
-            .articles-section { padding: 5rem 0; }
-            .article-card { flex: 0 0 300px; }
-            .article-content { padding: 1.5rem; }
-
-            .masthead-section { padding: 5rem 0; }
-            .masthead-name { font-size: 2rem; }
-            .masthead-container { padding: 0 2rem; }
-
-            footer { padding: 4rem 0 2rem; }
-            .footer-container { grid-template-columns: 1fr; gap: 2.5rem; padding: 0 2rem; padding-bottom: 2.5rem; margin-bottom: 2rem; }
-            .footer-logo { font-size: 1.5rem; }
-            .footer-bottom { padding: 0 2rem; flex-direction: column; text-align: center; }
-        }
-
-        @media (max-width: 600px) {
-            .mission-section { padding: 5rem 0; }
-            .mission-container { padding: 0 1.5rem; }
-            .mission-headline { font-size: 1.7rem; }
-            .mission-body { font-size: 0.9rem; margin-bottom: 3rem; }
-            .mission-pillars { grid-template-columns: 1fr; }
-            .mission-pillar { border-right: none !important; border-bottom: 1px solid rgba(255,255,255,0.12); }
-            .mission-pillar:last-child { border-bottom: none; }
-            .mission-cta-row { gap: 1.5rem; }
-            .nav-container { padding: 1rem 1.5rem; }
-            .logo { font-size: 1.2rem; letter-spacing: 2px; }
-            /* FIX #6: smaller nav ~60px on mobile; keep padding-top in sync */
-            .hero { padding-top: 60px; scroll-margin-top: 60px; }
-            section[id] { scroll-margin-top: 60px; }
-            .hero-left { padding: 3rem 1.5rem; }
-            .hero-eyebrow { font-size: 0.6rem; margin-bottom: 2rem; letter-spacing: 2px; }
-            .hero-headline { font-size: 2.2rem; margin-bottom: 2rem; }
-            .hero-right { min-height: 45vh; }
-            .hero-image-overlay { padding: 1.5rem; }
-            .overlay-title { font-size: 1.3rem; }
-            .overlay-desc { font-size: 0.8rem; line-height: 1.5; }
-            .overlay-tag { font-size: 0.6rem; margin-bottom: 0.5rem; }
-            .stat-number { font-size: 2rem; }
-            .stat-label { font-size: 0.8rem; }
-            .stats-grid { gap: 1.5rem; margin-bottom: 2rem; }
-            .hero-cta { font-size: 0.65rem; }
-
-            .section-container { padding: 0 1.5rem; }
-            .section-title { font-size: 1.6rem; letter-spacing: 1px; }
-            .section-subtitle { font-size: 0.65rem; }
-            .section-header { margin-bottom: 2rem; padding-bottom: 1.5rem; }
-
-            .brands-section { padding: 4rem 0; }
-            .brand-image { height: 240px; }
-            .brand-content { padding: 1.5rem; }
-            .brand-name { font-size: 1.2rem; }
-            .brand-description { font-size: 0.8rem; line-height: 1.7; }
-            .brand-category { font-size: 0.6rem; }
-            .tag { font-size: 0.55rem; padding: 0.3rem 0.7rem; }
-
-            .editorial-section { padding: 4rem 0; }
-            .editorial-grid { margin-top: 2rem; gap: 1.5rem; }
-            .editorial-large { min-height: 320px; }
-            .editorial-card { min-height: 240px; }
-            .editorial-overlay { padding: 1.5rem; }
-            .editorial-title { font-size: 1.2rem !important; }
-            .editorial-tag { font-size: 0.6rem; }
-            .editorial-desc { font-size: 0.8rem; }
-
-            .articles-section { padding: 4rem 0; }
-            .article-card { flex: 0 0 280px; }
-            .article-image { height: 180px; }
-            .article-content { padding: 1.25rem; }
-            .article-title { font-size: 1.1rem; }
-            .article-excerpt { font-size: 0.8rem; margin-bottom: 1rem; }
-            .scroll-btn { width: 36px; height: 36px; font-size: 1rem; }
-
-            .masthead-section { padding: 4rem 0; }
-            .masthead-container { padding: 0 1.5rem; }
-            .masthead-label { font-size: 0.6rem; letter-spacing: 2px; }
-            .masthead-name { font-size: 1.6rem; }
-            .masthead-title { font-size: 0.65rem; }
-
-            footer { padding: 3rem 0 2rem; }
-            .footer-container { padding: 0 1.5rem; padding-bottom: 2rem; gap: 2rem; }
-            .footer-logo { font-size: 1.3rem; letter-spacing: 2px; }
-            .footer-tagline { font-size: 0.8rem; }
-            .footer-section-title { font-size: 0.6rem; }
-            .footer-link { font-size: 0.8rem; }
-            .social-link { font-size: 0.65rem; }
-            .footer-bottom { padding: 0 1.5rem; font-size: 0.6rem; }
-        }
-
-        @media (max-width: 400px) {
-            .hero-headline { font-size: 1.8rem; }
-            .stat-number { font-size: 1.7rem; }
-            .section-title { font-size: 1.4rem; }
-            .brand-image { height: 200px; }
-            .editorial-large { min-height: 280px; }
-            .editorial-card { min-height: 200px; }
-            .article-card { flex: 0 0 260px; }
-        }
+
+/* ─── TOKENS ─────────────────────────────────────────── */
+:root {
+    --black:      #000000;
+    --white:      #FFFFFF;
+    --off-white:  #FAFAFA;
+    --text-gray:  #666666;
+    --red:        #E31E24;
+    --border:     #E8E8E8;
+    --nav-h:      72px;
+    --pad:        3rem;        /* horizontal page padding */
+    --section-v:  6rem;        /* vertical section padding */
+    --max-w:      1800px;
+}
+
+/* ─── RESET ──────────────────────────────────────────── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Nunito Sans', 'Avenir Next', 'Century Gothic', sans-serif;
+    background: var(--white);
+    color: var(--black);
+    line-height: 1.5;
+    font-weight: 400;
+    overflow-x: hidden;
+}
+
+img { display: block; max-width: 100%; }
+a   { color: inherit; text-decoration: none; }
+
+/* ─── NAV ────────────────────────────────────────────── */
+nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: var(--nav-h);
+    background: rgba(255,255,255,0.98);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    z-index: 1000;
+}
+
+.nav-inner {
+    max-width: var(--max-w);
+    height: 100%;
+    margin: 0 auto;
+    padding: 0 var(--pad);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-logo img { height: 40px; }
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 5px;
+    z-index: 1001;
+}
+.hamburger span { width: 24px; height: 2px; background: var(--black); transition: all .3s; }
+.hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+
+.nav-links {
+    display: flex;
+    gap: 3rem;
+    list-style: none;
+}
+.nav-links a {
+    font-size: .72rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 400;
+    transition: opacity .25s;
+}
+.nav-links a:hover   { opacity: .55; }
+.nav-links .red      { color: var(--red); font-weight: 500; }
+
+/* ─── PAGE WRAPPER ───────────────────────────────────── */
+/* Everything below the fixed nav */
+.page { margin-top: var(--nav-h); }
+
+/* Shared inner container */
+.container {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 var(--pad);
+}
+
+/* ─── HERO ───────────────────────────────────────────── */
+.hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: calc(90vh - var(--nav-h));
+}
+
+.hero-left {
+    background: var(--off-white);
+    padding: 6rem var(--pad);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.hero-eyebrow {
+    font-size: .68rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--text-gray);
+    font-weight: 500;
+    margin-bottom: 2.5rem;
+}
+
+.hero-headline {
+    font-size: 4.5rem;
+    font-weight: 700;
+    line-height: .92;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 3rem;
+}
+
+.hero-headline span { display: block; }
+
+.stats { display: grid; gap: 2.5rem; margin-bottom: 3rem; }
+
+.stat { border-left: 3px solid var(--black); padding-left: 1.5rem; }
+
+.stat-num {
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 1px;
+    margin-bottom: .4rem;
+}
+
+.stat-lbl { font-size: .88rem; color: var(--text-gray); font-weight: 300; }
+
+.hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: .72rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding-bottom: .4rem;
+    border-bottom: 2px solid var(--black);
+    transition: gap .25s;
+    width: fit-content;
+}
+.hero-cta:hover { gap: 1.6rem; }
+
+.hero-right {
+    position: relative;
+    min-height: 500px;
+    background: linear-gradient(135deg, #E5F4FF, #87CEEB);
+    overflow: hidden;
+}
+
+.hero-img {
+    position: absolute;
+    inset: 0;
+    background-image: url('https://www.mybarriere.com/cdn/shop/files/BA8006-LUBL-36_model2_c8d9ac41-6646-414c-a149-ebb221001457_1024x1024.jpg?v=1766422849');
+    background-size: cover;
+    background-position: center;
+}
+
+.hero-overlay {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 3rem;
+    background: linear-gradient(to top, rgba(0,0,0,.88), transparent);
+    color: var(--white);
+    z-index: 2;
+}
+
+.overlay-tag  { font-size: .62rem; letter-spacing: 2px; text-transform: uppercase; opacity: .88; margin-bottom: .8rem; }
+.overlay-h    { font-family: 'Didact Gothic', serif; font-size: 2rem; line-height: 1.2; margin-bottom: .6rem; }
+.overlay-body { font-size: .92rem; opacity: .88; line-height: 1.7; font-weight: 300; }
+
+/* ─── MARQUEE ────────────────────────────────────────── */
+.marquee-wrap { background: var(--black); overflow: hidden; padding: .75rem 0; }
+
+.marquee-track {
+    display: flex;
+    gap: 3rem;
+    animation: marquee 30s linear infinite;
+    width: max-content;
+}
+
+.marquee-item {
+    font-size: .68rem;
+    color: var(--white);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+@keyframes marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+}
+
+/* ─── MISSION ────────────────────────────────────────── */
+.mission {
+    background: var(--black);
+    color: var(--white);
+    padding: var(--section-v) 0;
+}
+
+.mission-label {
+    font-size: .62rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--red);
+    font-weight: 500;
+    margin-bottom: 1.8rem;
+}
+
+.mission-headline {
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1.1;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    margin-bottom: 2rem;
+}
+
+.mission-headline em { font-style: normal; color: var(--red); }
+
+.mission-body {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: rgba(255,255,255,.7);
+    max-width: 780px;
+    font-weight: 300;
+    margin-bottom: 4rem;
+}
+
+.pillars {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border: 1px solid rgba(255,255,255,.15);
+    margin-bottom: 3.5rem;
+}
+
+.pillar {
+    padding: 2.5rem 2rem;
+    border-right: 1px solid rgba(255,255,255,.15);
+    transition: background .25s;
+}
+.pillar:last-child { border-right: none; }
+.pillar:hover      { background: rgba(255,255,255,.04); }
+
+.pillar-icon  { margin-bottom: 1rem; }
+.pillar-label { font-size: .62rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; margin-bottom: .7rem; }
+.pillar-text  { font-size: .8rem; line-height: 1.7; color: rgba(255,255,255,.5); font-weight: 300; }
+
+.mission-footer {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+}
+
+.mission-cta {
+    font-size: .72rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--white);
+    padding-bottom: .4rem;
+    border-bottom: 2px solid var(--red);
+    transition: color .25s;
+}
+.mission-cta:hover { color: var(--red); }
+
+.mission-tag {
+    font-size: .68rem;
+    color: rgba(255,255,255,.35);
+    font-style: italic;
+    letter-spacing: 1px;
+}
+
+/* ─── SECTION SHARED ─────────────────────────────────── */
+.section { padding: var(--section-v) 0; }
+.section--gray { background: var(--off-white); }
+
+.section-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1.5rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.section-title {
+    font-size: 2.8rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.section-sub {
+    font-size: .72rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-gray);
+    font-weight: 300;
+}
+
+/* ─── BRANDS ─────────────────────────────────────────── */
+.brands-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border: 1px solid var(--border);
+}
+
+.brand-card {
+    border-right: 1px solid var(--border);
+    transition: background .25s;
+}
+.brand-card:last-child { border-right: none; }
+.brand-card:hover      { background: var(--off-white); }
+
+.brand-thumb {
+    height: 380px;
+    background-size: cover;
+    background-position: center;
+}
+
+.brand-body { padding: 2rem; }
+.brand-cat  { font-size: .62rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-gray); margin-bottom: .8rem; }
+.brand-name { font-family: 'Didact Gothic', serif; font-size: 1.45rem; margin-bottom: .8rem; line-height: 1.3; }
+.brand-desc { font-size: .83rem; line-height: 1.8; color: var(--text-gray); margin-bottom: 1.2rem; font-weight: 300; }
+
+.brand-tags { display: flex; gap: .5rem; flex-wrap: wrap; }
+.tag {
+    font-size: .58rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: .35rem .8rem;
+    border: 1px solid var(--border);
+    transition: all .25s;
+    cursor: default;
+}
+.tag:hover { background: var(--black); color: var(--white); border-color: var(--black); }
+
+/* brand thumb tints */
+.b1 { background-color: #FFE5E5; }
+.b2 { background-color: #E5F4FF; }
+.b3 { background-color: #FFE8E0; }
+.b4 { background-color: #F0E5FF; }
+
+/* ─── EDITORIAL ──────────────────────────────────────── */
+.editorial-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 2.5rem;
+}
+
+.ed-card {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--border);
+}
+.ed-card--large { min-height: 680px; }
+.ed-card--small { min-height: 320px; }
+
+.ed-stack { display: flex; flex-direction: column; gap: 2.5rem; }
+.ed-stack .ed-card { flex: 1; }
+
+.ed-img {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+}
+
+.ed-overlay {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 2.5rem;
+    background: linear-gradient(to top, rgba(0,0,0,.92), transparent);
+    color: var(--white);
+    z-index: 2;
+}
+
+.ed-tag   { font-size: .6rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: .8rem; opacity: .85; }
+.ed-title { font-family: 'Didact Gothic', serif; font-size: 1.7rem; margin-bottom: .7rem; line-height: 1.2; }
+.ed-desc  { font-size: .87rem; opacity: .88; line-height: 1.65; }
+
+/* ─── ARTICLES CAROUSEL ──────────────────────────────── */
+.scroll-controls { display: flex; align-items: center; gap: 1rem; }
+
+.scroll-btn {
+    width: 42px; height: 42px;
+    border: 1px solid var(--black);
+    background: var(--white);
+    cursor: pointer;
+    font-size: 1.1rem;
+    display: flex; align-items: center; justify-content: center;
+    transition: all .25s;
+    color: var(--black);
+    line-height: 1;
+}
+.scroll-btn:hover { background: var(--black); color: var(--white); }
+
+/* The track sits inside the container — no overflow on section or container */
+.articles-track-wrap { position: relative; }
+
+.articles-track {
+    display: flex;
+    gap: 2rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    cursor: grab;
+    padding-bottom: 1.5rem;
+}
+.articles-track::-webkit-scrollbar { display: none; }
+.articles-track.dragging           { cursor: grabbing; scroll-behavior: auto; }
+
+.article-card {
+    flex: 0 0 360px;
+    scroll-snap-align: start;
+    border: 1px solid var(--border);
+    background: var(--white);
+    transition: transform .35s ease, box-shadow .35s ease;
+}
+.article-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 40px rgba(0,0,0,.08);
+}
+
+/* Image area — overflow hidden ONLY here */
+.art-img-link { display: block; overflow: hidden; }
+
+.art-img {
+    height: 220px;
+    background-size: cover;
+    background-position: center;
+    transition: opacity .3s;
+    position: relative;
+}
+.art-img-link:hover .art-img { opacity: .85; }
+
+.art-badge {
+    position: absolute;
+    top: 1rem; left: 1rem;
+    background: var(--white);
+    color: var(--black);
+    font-size: .58rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: .35rem .75rem;
+    pointer-events: none;
+}
+
+/* Text content — no overflow restrictions */
+.art-body { padding: 1.75rem; }
+
+.art-meta {
+    display: flex;
+    gap: 1.2rem;
+    margin-bottom: .9rem;
+}
+.art-date, .art-read {
+    font-size: .68rem;
+    color: var(--text-gray);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.art-title-link { display: block; }
+.art-title {
+    font-family: 'Didact Gothic', serif;
+    font-size: 1.2rem;
+    line-height: 1.35;
+    margin-bottom: .85rem;
+    font-weight: 400;
+    transition: opacity .25s;
+}
+.art-title-link:hover .art-title { opacity: .55; }
+
+.art-excerpt {
+    font-size: .83rem;
+    line-height: 1.7;
+    color: var(--text-gray);
+    margin-bottom: 1.2rem;
+    font-weight: 300;
+}
+
+.art-link {
+    font-size: .68rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: opacity .25s;
+}
+.art-link:hover { opacity: .55; }
+
+/* Progress bar */
+.scroll-bar {
+    height: 2px;
+    background: var(--border);
+    margin-top: .5rem;
+    position: relative;
+}
+.scroll-bar-fill {
+    height: 100%;
+    background: var(--black);
+    width: 0;
+    transition: width .12s;
+}
+
+/* ─── MASTHEAD ───────────────────────────────────────── */
+.masthead {
+    background: var(--black);
+    color: var(--white);
+    padding: var(--section-v) 0;
+    text-align: center;
+}
+.masthead-lbl  { font-size: .62rem; letter-spacing: 3px; text-transform: uppercase; opacity: .55; margin-bottom: 1.5rem; }
+.masthead-name { font-family: 'Didact Gothic', serif; font-size: 2.4rem; font-style: italic; margin-bottom: .8rem; }
+.masthead-role { font-size: .72rem; letter-spacing: 2px; text-transform: uppercase; opacity: .75; }
+
+/* ─── FOOTER ─────────────────────────────────────────── */
+footer {
+    background: var(--black);
+    color: var(--white);
+    padding: 5rem 0 2.5rem;
+    border-top: 1px solid rgba(255,255,255,.08);
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 4rem;
+    padding-bottom: 3rem;
+    margin-bottom: 2.5rem;
+    border-bottom: 1px solid rgba(255,255,255,.1);
+}
+
+.footer-tagline { font-size: .87rem; opacity: .55; line-height: 1.7; max-width: 380px; margin-top: 1.2rem; }
+.footer-h       { font-size: .62rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 500; margin-bottom: 1.4rem; }
+
+.footer-links { display: flex; flex-direction: column; gap: .9rem; }
+.footer-link  { font-size: .83rem; opacity: .55; transition: opacity .25s; }
+.footer-link:hover { opacity: 1; }
+
+.social-links { display: flex; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 1.8rem; }
+.social-link  { font-size: .72rem; letter-spacing: 2px; text-transform: uppercase; opacity: .55; transition: opacity .25s; }
+.social-link:hover { opacity: 1; }
+
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    font-size: .68rem;
+    opacity: .35;
+    letter-spacing: 1px;
+    flex-wrap: wrap;
+    gap: .5rem;
+}
+
+/* ─── SCROLL MARGIN ──────────────────────────────────── */
+section[id], .hero { scroll-margin-top: var(--nav-h); }
+
+/* ─── FADE IN ────────────────────────────────────────── */
+.fade { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+.fade.in { opacity: 1; transform: none; }
+
+/* ─── RESPONSIVE ─────────────────────────────────────── */
+@media (max-width: 1200px) {
+    :root { --pad: 2.5rem; }
+
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-left { border-bottom: 1px solid var(--border); }
+    .hero-headline { font-size: 3.4rem; }
+    .hero-right { min-height: 55vh; }
+
+    .brands-grid { grid-template-columns: repeat(2, 1fr); }
+    .brand-card { border-bottom: 1px solid var(--border); }
+    .brand-card:nth-child(2n) { border-right: none; }
+    .brand-card:nth-child(2n+1) { border-right: 1px solid var(--border); }
+    .brand-card:nth-last-child(-n+2) { border-bottom: none; }
+
+    .editorial-grid { grid-template-columns: 1fr; }
+    .ed-card--large { min-height: 480px; }
+
+    .pillars { grid-template-columns: repeat(2, 1fr); }
+    .pillar:nth-child(2) { border-right: none; }
+    .pillar:nth-child(1),
+    .pillar:nth-child(2) { border-bottom: 1px solid rgba(255,255,255,.15); }
+}
+
+@media (max-width: 900px) {
+    :root { --pad: 2rem; --section-v: 4.5rem; }
+
+    .hamburger { display: flex; }
+    .nav-links {
+        position: fixed;
+        top: 0; right: -100%;
+        width: 270px; height: 100vh;
+        background: var(--white);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2.5rem;
+        transition: right .4s ease;
+        box-shadow: -4px 0 24px rgba(0,0,0,.08);
+    }
+    .nav-links.open { right: 0; }
+    .nav-links a { font-size: .82rem; }
+
+    .hero-headline { font-size: 2.8rem; }
+    .hero-left { padding: 4rem var(--pad); }
+    .hero-right { min-height: 50vh; }
+    .overlay-h { font-size: 1.5rem; }
+
+    .section-title { font-size: 2rem; }
+
+    .brands-grid { grid-template-columns: 1fr; }
+    .brand-card { border-right: none !important; border-bottom: 1px solid var(--border) !important; }
+    .brand-card:last-child { border-bottom: none !important; }
+    .brand-thumb { height: 280px; }
+
+    .article-card { flex: 0 0 300px; }
+
+    .pillars { grid-template-columns: 1fr; }
+    .pillar { border-right: none !important; border-bottom: 1px solid rgba(255,255,255,.15) !important; }
+    .pillar:last-child { border-bottom: none !important; }
+
+    .footer-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .footer-grid > div:first-child { order: -1; }
+}
+
+@media (max-width: 600px) {
+    :root { --pad: 1.5rem; --section-v: 4rem; }
+
+    .hero-headline { font-size: 2.1rem; }
+    .stat-num { font-size: 2.4rem; }
+    .section-title { font-size: 1.6rem; }
+    .mission-headline { font-size: 2rem; }
+    .article-card { flex: 0 0 270px; }
+    .ed-card--large { min-height: 340px; }
+    .ed-card--small { min-height: 260px; }
+    .footer-bottom { flex-direction: column; }
+    .masthead-name { font-size: 2rem; }
+}
+
     </style>
 </head>
 <body>
-    <nav>
-        <div class="nav-container">
-            <a href="#" class="logo"><img src="https://i.postimg.cc/NfrD08fC/AVLogo.png" alt="Alpha Vogue" style="height:40px;display:block;"></a>
-            <div class="hamburger" id="hamburger" onclick="this.classList.toggle('active');document.querySelector('.nav-links').classList.toggle('open')">
-                <span></span><span></span><span></span>
-            </div>
-            <ul class="nav-links">
-                <li><a href="#featured" onclick="closeMenu()">Featured</a></li>
-                <li><a href="#articles" onclick="closeMenu()">Articles</a></li>
-                <li><a href="#editorial" onclick="closeMenu()">Editorial</a></li>
-                <li><a href="#about" onclick="closeMenu()">About</a></li>
-                <li><a href="#subscribe" class="subscribe-link" onclick="closeMenu()">Subscribe</a></li>
-            </ul>
-        </div>
-    </nav>
 
-    <section class="hero" id="featured">
-        <div class="hero-left">
-            <div class="hero-eyebrow">ALPHA VOGUE / WINTER 2024</div>
-            <h1 class="hero-headline">
-                <span class="hero-headline-line">NOT THE</span>
-                <span class="hero-headline-line">FUTURE.</span>
-                <span class="hero-headline-line">THE BUYERS.</span>
-            </h1>
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <div class="stat-number">$100B</div>
-                    <div class="stat-label">In purchasing power</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">42%</div>
-                    <div class="stat-label">Of household spend influenced by Gen-Alpha</div>
-                </div>
-            </div>
-            <a href="#brands" class="hero-cta">Explore Featured Brands <span>→</span></a>
-        </div>
-        <div class="hero-right">
-            <div class="hero-image">
-                <!-- FIX #7: removed the z-index:-1 gradient fallback div; background is now on .hero-right itself -->
-                <div style="position:absolute;top:0;left:0;width:100%;height:100%;background-image:url('https://www.mybarriere.com/cdn/shop/files/BA8006-LUBL-36_model2_c8d9ac41-6646-414c-a149-ebb221001457_1024x1024.jpg?v=1766422849');background-size:cover;background-position:center;"></div>
-            </div>
-            <div class="hero-image-overlay">
-                <div class="overlay-tag">Featured Campaign</div>
-                <h2 class="overlay-title">Wear Your Wellness</h2>
-                <p class="overlay-desc">Barriere vitamin patches redefine supplement culture—transforming daily nutrition into wearable art. Science-backed, loved by Gen-Alpha.</p>
-            </div>
-        </div>
-    </section>
+<!-- ── NAV ─────────────────────────────────────────────── -->
+<nav>
+    <div class="nav-inner">
+        <a href="#" class="nav-logo"><img src="https://i.postimg.cc/NfrD08fC/AVLogo.png" alt="Alpha Vogue"></a>
 
-    <!-- FIX #8: marquee items generated programmatically via JS (see script below) -->
-    <div class="marquee-section">
-        <div class="marquee" id="marqueeTrack"></div>
+        <div class="hamburger" id="burger">
+            <span></span><span></span><span></span>
+        </div>
+
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#featured"  onclick="closeNav()">Featured</a></li>
+            <li><a href="#articles"  onclick="closeNav()">Articles</a></li>
+            <li><a href="#editorial" onclick="closeNav()">Editorial</a></li>
+            <li><a href="#about"     onclick="closeNav()">About</a></li>
+            <li><a href="#subscribe" class="red" onclick="closeNav()">Subscribe</a></li>
+        </ul>
     </div>
+</nav>
 
-    <!-- MISSION SECTION -->
-    <section class="mission-section" id="mission">
-        <div class="mission-container">
-            <div class="mission-label">Our Mission</div>
-            <h2 class="mission-headline">
-                The trends being sold to us<br>
-                <em>are not built for us.</em>
-            </h2>
-            <p class="mission-body">
-                Alpha Vogue was founded at age 11 with one question: why does everything marketed to our generation — the drinks, the food, the beauty products — seem designed to hook us, not help us? We're done being passive consumers of habits that harm us. This platform exists to call it out, decode the noise, and spotlight the clean, conscious alternatives worth our attention.
-            </p>
-            <div class="mission-pillars">
-                <div class="mission-pillar">
-                    <div class="pillar-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2h8l1 6H7L8 2z"/><path d="M7 8c0 7 2 11 5 11s5-4 5-11"/><line x1="6" y1="13" x2="18" y2="13"/></svg>
-                    </div>
-                    <div class="pillar-label">What we drink</div>
-                    <div class="pillar-text">Ultra-processed beverages, hidden sugars, energy drinks targeting kids — we're exposing what's in the can.</div>
-                </div>
-                <div class="mission-pillar">
-                    <div class="pillar-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a7 7 0 0 1 7 7c0 4-3 7-7 9-4-2-7-5-7-9a7 7 0 0 1 7-7z"/><line x1="12" y1="8" x2="12" y2="13"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-                    </div>
-                    <div class="pillar-label">What we eat</div>
-                    <div class="pillar-text">Ingredient transparency, food dyes, ultra-processed snacks — and the clean-label brands doing it differently.</div>
-                </div>
-                <div class="mission-pillar">
-                    <div class="pillar-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-                    </div>
-                    <div class="pillar-label">What we put on our skin</div>
-                    <div class="pillar-text">The skincare-to-school pipeline is real. We're questioning what belongs on an 11-year-old's face.</div>
-                </div>
-                <div class="mission-pillar">
-                    <div class="pillar-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
-                    </div>
-                    <div class="pillar-label">What we scroll</div>
-                    <div class="pillar-text">Trend cycles engineered for addiction. We're building media literacy from the inside.</div>
-                </div>
+<div class="page">
+
+<!-- ── HERO ─────────────────────────────────────────────── -->
+<div class="hero" id="featured">
+    <div class="hero-left">
+        <p class="hero-eyebrow">Alpha Vogue / Winter 2024</p>
+        <h1 class="hero-headline">
+            <span>Not the</span>
+            <span>Future.</span>
+            <span>The Buyers.</span>
+        </h1>
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-num">$100B</div>
+                <div class="stat-lbl">In purchasing power</div>
             </div>
-            <div class="mission-cta-row">
-                <a href="#articles" class="mission-cta-primary">Read the investigations →</a>
-                <span class="mission-cta-tag">Founded by a Gen Alpha, for Gen Alpha</span>
+            <div class="stat">
+                <div class="stat-num">42%</div>
+                <div class="stat-lbl">Of household spend influenced by Gen-Alpha</div>
             </div>
         </div>
-    </section>
+        <a href="#brands" class="hero-cta">Explore Featured Brands <span>→</span></a>
+    </div>
+    <div class="hero-right">
+        <div class="hero-img"></div>
+        <div class="hero-overlay">
+            <p class="overlay-tag">Featured Campaign</p>
+            <h2 class="overlay-h">Wear Your Wellness</h2>
+            <p class="overlay-body">Barriere vitamin patches redefine supplement culture — transforming daily nutrition into wearable art. Science-backed, loved by Gen-Alpha.</p>
+        </div>
+    </div>
+</div>
 
-    <section class="brands-section" id="brands">
-        <div class="section-container">
-            <div class="section-header">
-                <h2 class="section-title">FEATURED BRANDS</h2>
-                <p class="section-subtitle">Gen-Alpha Approved</p>
+<!-- ── MARQUEE ───────────────────────────────────────────── -->
+<div class="marquee-wrap">
+    <div class="marquee-track" id="marqueeTrack"></div>
+</div>
+
+<!-- ── MISSION ───────────────────────────────────────────── -->
+<section class="mission" id="mission">
+    <div class="container">
+        <p class="mission-label">Our Mission</p>
+        <h2 class="mission-headline">The trends being sold to us<br><em>are not built for us.</em></h2>
+        <p class="mission-body">Alpha Vogue was founded at age 11 with one question: why does everything marketed to our generation — the drinks, the food, the beauty products — seem designed to hook us, not help us? We're done being passive consumers of habits that harm us. This platform exists to call it out, decode the noise, and spotlight the clean, conscious alternatives worth our attention.</p>
+
+        <div class="pillars">
+            <div class="pillar">
+                <div class="pillar-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2h8l1 6H7L8 2z"/><path d="M7 8c0 7 2 11 5 11s5-4 5-11"/><line x1="6" y1="13" x2="18" y2="13"/></svg>
+                </div>
+                <div class="pillar-label">What we drink</div>
+                <p class="pillar-text">Ultra-processed beverages, hidden sugars, energy drinks targeting kids — we're exposing what's in the can.</p>
             </div>
-            <div class="brands-grid">
-                <div class="brand-card">
-                    <div class="brand-image brand-image-1" style="position:relative;overflow:hidden;background-image:url('https://i.postimg.cc/rmPpdPCf/image.png');background-size:cover;background-position:center;">
-                        <div style="position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,rgba(255,229,229,0.05) 0%,rgba(255,182,193,0.05) 100%);"></div>
-                    </div>
-                    <div class="brand-content">
-                        <div class="brand-category">Wellness Technology</div>
-                        <h3 class="brand-name">Barriere Vitamin Patches</h3>
-                        <p class="brand-description">Skip the pills—wear your wellness. Transdermal vitamin delivery through beautifully designed patches. Science-backed, third-party tested, and featured in Vogue, Allure, and The New York Times.</p>
-                        <div class="brand-tags">
-                            <span class="tag">30M+ TikTok Views</span>
-                            <span class="tag">Biotech</span>
-                            <span class="tag">Vogue Featured</span>
-                        </div>
-                    </div>
+            <div class="pillar">
+                <div class="pillar-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a7 7 0 0 1 7 7c0 4-3 7-7 9-4-2-7-5-7-9a7 7 0 0 1 7-7z"/><line x1="12" y1="8" x2="12" y2="13"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
                 </div>
-                <div class="brand-card">
-                    <div class="brand-image brand-image-2" style="position:relative;overflow:hidden;background-image:url('https://i.postimg.cc/9fQXJbrB/image.png');background-size:cover;background-position:center;">
-                        <div style="position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,rgba(229,244,255,0.05) 0%,rgba(182,212,232,0.05) 100%);"></div>
-                    </div>
-                    <div class="brand-content">
-                        <div class="brand-category">Beauty × Fashion</div>
-                        <h3 class="brand-name">Summer Fridays × Gap</h3>
-                        <p class="brand-description">An unexpected convergence bridging skincare minimalism with American sportswear heritage in limited-edition form.</p>
-                        <div class="brand-tags">
-                            <span class="tag">Collaboration</span>
-                            <span class="tag">Limited Edition</span>
-                            <span class="tag">Collectible</span>
-                        </div>
-                    </div>
+                <div class="pillar-label">What we eat</div>
+                <p class="pillar-text">Ingredient transparency, food dyes, ultra-processed snacks — and the clean-label brands doing it differently.</p>
+            </div>
+            <div class="pillar">
+                <div class="pillar-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
                 </div>
-                <div class="brand-card">
-                    <div class="brand-image brand-image-3" style="position:relative;overflow:hidden;background-image:url('https://i.postimg.cc/tRvqDwPG/image.png');background-size:cover;background-position:center;">
-                        <div style="position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,rgba(255,232,224,0.05) 0%,rgba(255,212,196,0.05) 100%);"></div>
-                    </div>
-                    <div class="brand-content">
-                        <div class="brand-category">Food Culture</div>
-                        <h3 class="brand-name">Crumbl Cookies</h3>
-                        <p class="brand-description">Engineered scarcity meets social ritual. Weekly rotating menus transform cookies into cultural events and pink boxes into currency.</p>
-                        <div class="brand-tags">
-                            <span class="tag">Experience</span>
-                            <span class="tag">Social Commerce</span>
-                            <span class="tag">Weekly Drops</span>
-                        </div>
-                    </div>
+                <div class="pillar-label">What we put on our skin</div>
+                <p class="pillar-text">The skincare-to-school pipeline is real. We're questioning what belongs on an 11-year-old's face.</p>
+            </div>
+            <div class="pillar">
+                <div class="pillar-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
                 </div>
-                <div class="brand-card">
-                    <div class="brand-image brand-image-4" style="position:relative;overflow:hidden;background-image:url('https://i.postimg.cc/4ygS1J5B/image.png');background-size:cover;background-position:center;">
-                        <div style="position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,rgba(240,229,255,0.05) 0%,rgba(212,196,232,0.05) 100%);"></div>
-                    </div>
-                    <div class="brand-content">
-                        <div class="brand-category">Kids Wellness</div>
-                        <h3 class="brand-name">Barriere Kids</h3>
-                        <p class="brand-description">Making vitamins fun for Gen-Alpha. Adorable patch designs (dinosaurs, rainbows, galaxies) transform daily nutrition into creative self-expression. No pills, no sugar, pure innovation.</p>
-                        <div class="brand-tags">
-                            <span class="tag">Kids Health</span>
-                            <span class="tag">Design Forward</span>
-                        </div>
-                    </div>
-                </div>
+                <div class="pillar-label">What we scroll</div>
+                <p class="pillar-text">Trend cycles engineered for addiction. We're building media literacy from the inside.</p>
             </div>
         </div>
-    </section>
 
-    <section class="editorial-section" id="editorial">
-        <div class="section-container">
-            <div class="section-header">
-                <h2 class="section-title">EDITORIAL</h2>
-                <p class="section-subtitle">Current Issue</p>
-            </div>
-            <div class="editorial-grid">
-                <!-- FIX #5: editorial-image is now absolutely positioned; parent uses min-height -->
-                <div class="editorial-large">
-                    <div class="editorial-image" style="background-image:url('https://i.postimg.cc/V6nC81c2/image.png');"></div>
-                    <div class="editorial-overlay">
-                        <div class="editorial-tag">Cover Story</div>
-                        <h3 class="editorial-title">The Architecture of Taste</h3>
-                        <p class="editorial-desc">How Gen-Alpha constructs aesthetic systems from TikTok algorithms to IRL style tribes</p>
+        <div class="mission-footer">
+            <a href="#articles" class="mission-cta">Read the investigations →</a>
+            <span class="mission-tag">Founded by a Gen Alpha, for Gen Alpha</span>
+        </div>
+    </div>
+</section>
+
+<!-- ── BRANDS ────────────────────────────────────────────── -->
+<section class="section" id="brands">
+    <div class="container">
+        <div class="section-head">
+            <h2 class="section-title">Featured Brands</h2>
+            <p class="section-sub">Gen-Alpha Approved</p>
+        </div>
+        <div class="brands-grid">
+            <div class="brand-card fade">
+                <div class="brand-thumb b1" style="background-image:url('https://i.postimg.cc/rmPpdPCf/image.png')"></div>
+                <div class="brand-body">
+                    <p class="brand-cat">Wellness Technology</p>
+                    <h3 class="brand-name">Barriere Vitamin Patches</h3>
+                    <p class="brand-desc">Skip the pills — wear your wellness. Transdermal vitamin delivery through beautifully designed patches. Science-backed, third-party tested, featured in Vogue, Allure, and The New York Times.</p>
+                    <div class="brand-tags">
+                        <span class="tag">30M+ TikTok Views</span>
+                        <span class="tag">Biotech</span>
+                        <span class="tag">Vogue Featured</span>
                     </div>
                 </div>
-                <div class="editorial-small">
-                    <div class="editorial-card">
-                        <div class="editorial-image" style="background-image:url('https://i.postimg.cc/pdgWRFWH/image.png');"></div>
-                        <div class="editorial-overlay">
-                            <div class="editorial-tag">Fashion</div>
-                            <h3 class="editorial-title" style="font-size:1.6rem;">Urban Language</h3>
-                            <p class="editorial-desc">Where street informs runway</p>
-                        </div>
+            </div>
+            <div class="brand-card fade">
+                <div class="brand-thumb b2" style="background-image:url('https://i.postimg.cc/9fQXJbrB/image.png')"></div>
+                <div class="brand-body">
+                    <p class="brand-cat">Beauty × Fashion</p>
+                    <h3 class="brand-name">Summer Fridays × Gap</h3>
+                    <p class="brand-desc">An unexpected convergence bridging skincare minimalism with American sportswear heritage in limited-edition form.</p>
+                    <div class="brand-tags">
+                        <span class="tag">Collaboration</span>
+                        <span class="tag">Limited Edition</span>
+                        <span class="tag">Collectible</span>
                     </div>
-                    <div class="editorial-card">
-                        <div class="editorial-image" style="background-image:url('https://i.postimg.cc/BbP2tDDH/image.png');"></div>
-                        <div class="editorial-overlay">
-                            <div class="editorial-tag">Culture</div>
-                            <h3 class="editorial-title" style="font-size:1.6rem;">New Standards</h3>
-                            <p class="editorial-desc">Beyond algorithms</p>
-                        </div>
+                </div>
+            </div>
+            <div class="brand-card fade">
+                <div class="brand-thumb b3" style="background-image:url('https://i.postimg.cc/tRvqDwPG/image.png')"></div>
+                <div class="brand-body">
+                    <p class="brand-cat">Food Culture</p>
+                    <h3 class="brand-name">Crumbl Cookies</h3>
+                    <p class="brand-desc">Engineered scarcity meets social ritual. Weekly rotating menus transform cookies into cultural events and pink boxes into currency.</p>
+                    <div class="brand-tags">
+                        <span class="tag">Experience</span>
+                        <span class="tag">Social Commerce</span>
+                        <span class="tag">Weekly Drops</span>
+                    </div>
+                </div>
+            </div>
+            <div class="brand-card fade">
+                <div class="brand-thumb b4" style="background-image:url('https://i.postimg.cc/4ygS1J5B/image.png')"></div>
+                <div class="brand-body">
+                    <p class="brand-cat">Kids Wellness</p>
+                    <h3 class="brand-name">Barriere Kids</h3>
+                    <p class="brand-desc">Making vitamins fun for Gen-Alpha. Adorable patch designs transform daily nutrition into creative self-expression. No pills, no sugar, pure innovation.</p>
+                    <div class="brand-tags">
+                        <span class="tag">Kids Health</span>
+                        <span class="tag">Design Forward</span>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Articles with Horizontal Scroll -->
-    <section class="articles-section" id="articles">
-        <div class="section-container">
-            <div class="section-header">
-                <h2 class="section-title">ARTICLES</h2>
-                <div class="scroll-controls">
-                    <p class="section-subtitle" style="margin-right:1.5rem;">Latest Stories</p>
-                    <button class="scroll-btn" id="scrollPrev" aria-label="Previous">←</button>
-                    <button class="scroll-btn" id="scrollNext" aria-label="Next">→</button>
+<!-- ── EDITORIAL ──────────────────────────────────────────── -->
+<section class="section section--gray" id="editorial">
+    <div class="container">
+        <div class="section-head">
+            <h2 class="section-title">Editorial</h2>
+            <p class="section-sub">Current Issue</p>
+        </div>
+        <div class="editorial-grid">
+            <div class="ed-card ed-card--large fade">
+                <div class="ed-img" style="background-image:url('https://i.postimg.cc/V6nC81c2/image.png')"></div>
+                <div class="ed-overlay">
+                    <p class="ed-tag">Cover Story</p>
+                    <h3 class="ed-title">The Architecture of Taste</h3>
+                    <p class="ed-desc">How Gen-Alpha constructs aesthetic systems from TikTok algorithms to IRL style tribes</p>
                 </div>
             </div>
-
-            <div class="articles-scroll-wrapper">
-                <div class="articles-scroll-track" id="articlesTrack">
-                    <article class="article-card">
-                        <a href="https://www.alphavogue.co/The-Revolver-Effect-article.html" class="article-image-link">
-                            <div class="article-image" style="background-image:url('https://i.postimg.cc/hGKm9B9J/thumbnail.jpg');background-size:cover;background-position:center;">
-                                <span class="article-category-badge">Wellness</span>
-                            </div>
-                        </a>
-                        <div class="article-content">
-                            <div class="article-meta">
-                                <span class="article-date">Feb 4, 2026</span>
-                                <span class="article-read">5 min read</span>
-                            </div>
-                            <a href="https://www.alphavogue.co/The-Revolver-Effect-article.html" class="article-title-link"><h3 class="article-title">The Revolver Effect: Why Old-School Power Is Showing Up in Today's Trends</h3></a>
-                            <p class="article-excerpt">If you've been paying attention lately, you might've noticed something interesting: the past is everywhere. Flip phones are back.</p>
-                            <a href="https://www.alphavogue.co/The-Revolver-Effect-article.html" class="article-link">Read More →</a>
-                        </div>
-                    </article>
-
-                    <article class="article-card">
-                        <a href="https://www.alphavogue.co/This-Week-in-U.S-Politics-Trump.html" class="article-image-link">
-                            <div class="article-image" style="background-image:url('https://images.pexels.com/photos/129112/pexels-photo-129112.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');background-size:cover;background-position:center;">
-                                <span class="article-category-badge">Culture</span>
-                            </div>
-                        </a>
-                        <div class="article-content">
-                            <div class="article-meta">
-                                <span class="article-date">Feb 10, 2026</span>
-                                <span class="article-read">4 min read</span>
-                            </div>
-                            <a href="https://www.alphavogue.co/This-Week-in-U.S-Politics-Trump.html" class="article-title-link"><h3 class="article-title">This Week in U.S. Politics: Trump, the White House & ICE</h3></a>
-                            <p class="article-excerpt">Here's the latest on what President Donald Trump and his administration are doing right now, including immigration enforcement actions by ICE.</p>
-                            <a href="https://www.alphavogue.co/This-Week-in-U.S-Politics-Trump.html" class="article-link">Read More →</a>
-                        </div>
-                    </article>
-
-                    <article class="article-card">
-                        <a href="https://www.alphavogue.co/Ongoing-Wars-in-2026-A-Neutral-Overview.html" class="article-image-link">
-                            <div class="article-image" style="background-image:url('https://images.pexels.com/photos/274886/pexels-photo-274886.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');background-size:cover;background-position:center;">
-                                <span class="article-category-badge">World</span>
-                            </div>
-                        </a>
-                        <div class="article-content">
-                            <div class="article-meta">
-                                <span class="article-date">Feb 17, 2026</span>
-                                <span class="article-read">6 min read</span>
-                            </div>
-                            <a href="https://www.alphavogue.co/Ongoing-Wars-in-2026-A-Neutral-Overview.html" class="article-title-link"><h3 class="article-title">Ongoing Wars in 2026: A Neutral Overview</h3></a>
-                            <p class="article-excerpt">As of this week, several armed conflicts are continuing around the world. These wars involve governments, armed groups, and international actors.</p>
-                            <a href="https://www.alphavogue.co/Ongoing-Wars-in-2026-A-Neutral-Overview.html" class="article-link">Read More →</a>
-                        </div>
-                    </article>
-
-                    <article class="article-card">
-                        <a href="https://www.alphavogue.co/The-Business-World-in-2026.html" class="article-image-link">
-                            <div class="article-image" style="background-image:url('https://images.pexels.com/photos/358382/pexels-photo-358382.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');background-size:cover;background-position:center;">
-                                <span class="article-category-badge">Business</span>
-                            </div>
-                        </a>
-                        <div class="article-content">
-                            <div class="article-meta">
-                                <span class="article-date">Feb 17, 2026</span>
-                                <span class="article-read">6 min read</span>
-                            </div>
-                            <a href="https://www.alphavogue.co/The-Business-World-in-2026.html" class="article-title-link"><h3 class="article-title">The Business World in 2026: Growth, Technology, and Global Shifts</h3></a>
-                            <p class="article-excerpt">The global business landscape in 2026 is defined by rapid technological innovation, economic adjustment, and shifting power between regions.</p>
-                            <a href="https://www.alphavogue.co/The-Business-World-in-2026.html" class="article-link">Read More →</a>
-                        </div>
-                    </article>
-
-                    <article class="article-card">
-                        <a href="https://www.alphavogue.co/Gen-Alpha-Is-Building-Empires-Before-18.html" class="article-image-link">
-                            <div class="article-image" style="background-image:url('https://images.pexels.com/photos/6473102/pexels-photo-6473102.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');background-size:cover;background-position:center;">
-                                <span class="article-category-badge">Gen Alpha</span>
-                            </div>
-                        </a>
-                        <div class="article-content">
-                            <div class="article-meta">
-                                <span class="article-date">Feb 17, 2026</span>
-                                <span class="article-read">6 min read</span>
-                            </div>
-                            <a href="https://www.alphavogue.co/Gen-Alpha-Is-Building-Empires-Before-18.html" class="article-title-link"><h3 class="article-title">Gen Alpha Is Building Empires Before 18</h3></a>
-                            <p class="article-excerpt">Why our generation isn't "too young" — we're just early. The future isn't waiting — and neither are we.</p>
-                            <a href="https://www.alphavogue.co/Gen-Alpha-Is-Building-Empires-Before-18.html" class="article-link">Read More →</a>
-                        </div>
-                    </article>
-
-                    <article class="article-card">
-                        <a href="https://www.alphavogue.co/World-Politics-This-Week.html" class="article-image-link">
-                            <div class="article-image" style="background-image:url('https://images.pexels.com/photos/4468974/pexels-photo-4468974.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');background-size:cover;background-position:center;">
-                                <span class="article-category-badge">Politics</span>
-                            </div>
-                        </a>
-                        <div class="article-content">
-                            <div class="article-meta">
-                                <span class="article-date">Feb 17, 2026</span>
-                                <span class="article-read">6 min read</span>
-                            </div>
-                            <a href="https://www.alphavogue.co/World-Politics-This-Week.html" class="article-title-link"><h3 class="article-title">World Politics This Week: Leadership, Policy, and Global Shifts</h3></a>
-                            <p class="article-excerpt">This week in world politics, leaders across Europe, Asia, and beyond are dealing with economic pressures, domestic reforms, and shifting international alliances.</p>
-                            <a href="https://www.alphavogue.co/World-Politics-This-Week.html" class="article-link">Read More →</a>
-                        </div>
-                    </article>
+            <div class="ed-stack">
+                <div class="ed-card ed-card--small fade">
+                    <div class="ed-img" style="background-image:url('https://i.postimg.cc/pdgWRFWH/image.png')"></div>
+                    <div class="ed-overlay">
+                        <p class="ed-tag">Fashion</p>
+                        <h3 class="ed-title" style="font-size:1.5rem">Urban Language</h3>
+                        <p class="ed-desc">Where street informs runway</p>
+                    </div>
                 </div>
-
-                <div class="scroll-progress">
-                    <div class="scroll-progress-bar" id="scrollProgressBar"></div>
+                <div class="ed-card ed-card--small fade">
+                    <div class="ed-img" style="background-image:url('https://i.postimg.cc/BbP2tDDH/image.png')"></div>
+                    <div class="ed-overlay">
+                        <p class="ed-tag">Culture</p>
+                        <h3 class="ed-title" style="font-size:1.5rem">New Standards</h3>
+                        <p class="ed-desc">Beyond algorithms</p>
+                    </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section class="masthead-section" id="about">
-        <div class="masthead-container">
-            <div class="masthead-label">Editor in Chief & Creative Director</div>
-            <h2 class="masthead-name">Ayah-Sophia Dada</h2>
-            <p class="masthead-title">Curating the Future of Culture</p>
+<!-- ── ARTICLES ───────────────────────────────────────────── -->
+<section class="section" id="articles">
+    <div class="container">
+        <div class="section-head">
+            <h2 class="section-title">Articles</h2>
+            <div class="scroll-controls">
+                <p class="section-sub" style="margin-right:.5rem">Latest Stories</p>
+                <button class="scroll-btn" id="sPrev" aria-label="Previous">←</button>
+                <button class="scroll-btn" id="sNext" aria-label="Next">→</button>
+            </div>
         </div>
-    </section>
 
-    <footer id="subscribe">
-        <div class="footer-container">
+        <div class="articles-track-wrap">
+            <div class="articles-track" id="artTrack">
+
+                <article class="article-card fade">
+                    <a class="art-img-link" href="https://www.alphavogue.co/The-Revolver-Effect-article.html">
+                        <div class="art-img" style="background-image:url('https://i.postimg.cc/hGKm9B9J/thumbnail.jpg')">
+                            <span class="art-badge">Wellness</span>
+                        </div>
+                    </a>
+                    <div class="art-body">
+                        <div class="art-meta"><span class="art-date">Feb 4, 2026</span><span class="art-read">5 min read</span></div>
+                        <a class="art-title-link" href="https://www.alphavogue.co/The-Revolver-Effect-article.html">
+                            <h3 class="art-title">The Revolver Effect: Why Old-School Power Is Showing Up in Today's Trends</h3>
+                        </a>
+                        <p class="art-excerpt">If you've been paying attention lately, you might've noticed something interesting: the past is everywhere. Flip phones are back.</p>
+                        <a class="art-link" href="https://www.alphavogue.co/The-Revolver-Effect-article.html">Read More →</a>
+                    </div>
+                </article>
+
+                <article class="article-card fade">
+                    <a class="art-img-link" href="https://www.alphavogue.co/This-Week-in-U.S-Politics-Trump.html">
+                        <div class="art-img" style="background-image:url('https://images.pexels.com/photos/129112/pexels-photo-129112.jpeg?auto=compress&cs=tinysrgb&w=800')">
+                            <span class="art-badge">Culture</span>
+                        </div>
+                    </a>
+                    <div class="art-body">
+                        <div class="art-meta"><span class="art-date">Feb 10, 2026</span><span class="art-read">4 min read</span></div>
+                        <a class="art-title-link" href="https://www.alphavogue.co/This-Week-in-U.S-Politics-Trump.html">
+                            <h3 class="art-title">This Week in U.S. Politics: Trump, the White House & ICE</h3>
+                        </a>
+                        <p class="art-excerpt">Here's the latest on what President Donald Trump and his administration are doing right now, including immigration enforcement actions by ICE.</p>
+                        <a class="art-link" href="https://www.alphavogue.co/This-Week-in-U.S-Politics-Trump.html">Read More →</a>
+                    </div>
+                </article>
+
+                <article class="article-card fade">
+                    <a class="art-img-link" href="https://www.alphavogue.co/Ongoing-Wars-in-2026-A-Neutral-Overview.html">
+                        <div class="art-img" style="background-image:url('https://images.pexels.com/photos/274886/pexels-photo-274886.jpeg?auto=compress&cs=tinysrgb&w=800')">
+                            <span class="art-badge">World</span>
+                        </div>
+                    </a>
+                    <div class="art-body">
+                        <div class="art-meta"><span class="art-date">Feb 17, 2026</span><span class="art-read">6 min read</span></div>
+                        <a class="art-title-link" href="https://www.alphavogue.co/Ongoing-Wars-in-2026-A-Neutral-Overview.html">
+                            <h3 class="art-title">Ongoing Wars in 2026: A Neutral Overview</h3>
+                        </a>
+                        <p class="art-excerpt">As of this week, several armed conflicts are continuing around the world involving governments, armed groups, and international actors.</p>
+                        <a class="art-link" href="https://www.alphavogue.co/Ongoing-Wars-in-2026-A-Neutral-Overview.html">Read More →</a>
+                    </div>
+                </article>
+
+                <article class="article-card fade">
+                    <a class="art-img-link" href="https://www.alphavogue.co/The-Business-World-in-2026.html">
+                        <div class="art-img" style="background-image:url('https://images.pexels.com/photos/358382/pexels-photo-358382.jpeg?auto=compress&cs=tinysrgb&w=800')">
+                            <span class="art-badge">Business</span>
+                        </div>
+                    </a>
+                    <div class="art-body">
+                        <div class="art-meta"><span class="art-date">Feb 17, 2026</span><span class="art-read">6 min read</span></div>
+                        <a class="art-title-link" href="https://www.alphavogue.co/The-Business-World-in-2026.html">
+                            <h3 class="art-title">The Business World in 2026: Growth, Technology, and Global Shifts</h3>
+                        </a>
+                        <p class="art-excerpt">The global business landscape in 2026 is defined by rapid technological innovation, economic adjustment, and shifting power between regions.</p>
+                        <a class="art-link" href="https://www.alphavogue.co/The-Business-World-in-2026.html">Read More →</a>
+                    </div>
+                </article>
+
+                <article class="article-card fade">
+                    <a class="art-img-link" href="https://www.alphavogue.co/Gen-Alpha-Is-Building-Empires-Before-18.html">
+                        <div class="art-img" style="background-image:url('https://images.pexels.com/photos/6473102/pexels-photo-6473102.jpeg?auto=compress&cs=tinysrgb&w=800')">
+                            <span class="art-badge">Gen Alpha</span>
+                        </div>
+                    </a>
+                    <div class="art-body">
+                        <div class="art-meta"><span class="art-date">Feb 17, 2026</span><span class="art-read">6 min read</span></div>
+                        <a class="art-title-link" href="https://www.alphavogue.co/Gen-Alpha-Is-Building-Empires-Before-18.html">
+                            <h3 class="art-title">Gen Alpha Is Building Empires Before 18</h3>
+                        </a>
+                        <p class="art-excerpt">Why our generation isn't "too young" — we're just early. The future isn't waiting — and neither are we.</p>
+                        <a class="art-link" href="https://www.alphavogue.co/Gen-Alpha-Is-Building-Empires-Before-18.html">Read More →</a>
+                    </div>
+                </article>
+
+                <article class="article-card fade">
+                    <a class="art-img-link" href="https://www.alphavogue.co/World-Politics-This-Week.html">
+                        <div class="art-img" style="background-image:url('https://images.pexels.com/photos/4468974/pexels-photo-4468974.jpeg?auto=compress&cs=tinysrgb&w=800')">
+                            <span class="art-badge">Politics</span>
+                        </div>
+                    </a>
+                    <div class="art-body">
+                        <div class="art-meta"><span class="art-date">Feb 17, 2026</span><span class="art-read">6 min read</span></div>
+                        <a class="art-title-link" href="https://www.alphavogue.co/World-Politics-This-Week.html">
+                            <h3 class="art-title">World Politics This Week: Leadership, Policy, and Global Shifts</h3>
+                        </a>
+                        <p class="art-excerpt">This week in world politics, leaders across Europe, Asia, and beyond are dealing with economic pressures and shifting international alliances.</p>
+                        <a class="art-link" href="https://www.alphavogue.co/World-Politics-This-Week.html">Read More →</a>
+                    </div>
+                </article>
+
+            </div>
+            <div class="scroll-bar"><div class="scroll-bar-fill" id="scrollFill"></div></div>
+        </div>
+    </div>
+</section>
+
+<!-- ── MASTHEAD ───────────────────────────────────────────── -->
+<section class="masthead" id="about">
+    <p class="masthead-lbl">Editor in Chief & Creative Director</p>
+    <h2 class="masthead-name">Ayah-Sophia Dada</h2>
+    <p class="masthead-role">Curating the Future of Culture</p>
+</section>
+
+<!-- ── FOOTER ─────────────────────────────────────────────── -->
+<footer id="subscribe">
+    <div class="container">
+        <div class="footer-grid">
             <div>
-                <div class="footer-logo"><img src="https://i.postimg.cc/NfrD08fC/AVLogo.png" alt="Alpha Vogue" style="height:50px;display:block;filter:invert(1);"></div>
+                <img src="https://i.postimg.cc/NfrD08fC/AVLogo.png" alt="Alpha Vogue" style="height:46px;filter:invert(1)">
                 <p class="footer-tagline">A digital publication documenting Gen-Alpha's cultural influence, aesthetic evolution, and the brands shaping tomorrow.</p>
             </div>
             <div>
-                <h4 class="footer-section-title">Navigate</h4>
+                <p class="footer-h">Navigate</p>
                 <div class="footer-links">
-                    <a href="#featured" class="footer-link">Featured</a>
-                    <a href="#articles" class="footer-link">Articles</a>
-                    <a href="#brands" class="footer-link">Brands</a>
-                    <a href="#editorial" class="footer-link">Editorial</a>
-                    <a href="#about" class="footer-link">About</a>
+                    <a class="footer-link" href="#featured">Featured</a>
+                    <a class="footer-link" href="#articles">Articles</a>
+                    <a class="footer-link" href="#brands">Brands</a>
+                    <a class="footer-link" href="#editorial">Editorial</a>
+                    <a class="footer-link" href="#about">About</a>
                 </div>
             </div>
             <div>
-                <h4 class="footer-section-title">Connect</h4>
+                <p class="footer-h">Connect</p>
                 <div class="social-links">
-                    <a href="https://www.instagram.com/alphavoguehq" class="social-link">Instagram</a>
-                    <a href="https://www.tiktok.com/@alpha.vogue" class="social-link">TikTok</a>
-                    <a href="https://www.linkedin.com/company/alphavoguehq" class="social-link">LinkedIn</a>
+                    <a class="social-link" href="https://www.instagram.com/alphavoguehq">Instagram</a>
+                    <a class="social-link" href="https://www.tiktok.com/@alpha.vogue">TikTok</a>
+                    <a class="social-link" href="https://www.linkedin.com/company/alphavoguehq">LinkedIn</a>
                 </div>
-                <div style="margin-top:2rem;">
-                    <a href="mailto:alphavoguehq@gmail.com" class="footer-link">alphavoguehq@gmail.com</a>
-                </div>
+                <a class="footer-link" href="mailto:alphavoguehq@gmail.com">alphavoguehq@gmail.com</a>
             </div>
         </div>
         <div class="footer-bottom">
-            <div>© 2024 Alpha Vogue. All rights reserved.</div>
-            <div>New York / London / Tokyo</div>
+            <span>© 2024 Alpha Vogue. All rights reserved.</span>
+            <span>New York / London / Tokyo</span>
         </div>
-    </footer>
+    </div>
+</footer>
 
-    <script>
-        /* -----------------------------------------------
-           FIX #8: Programmatic marquee — edit ITEMS array
-           only; duplication for infinite loop is automatic
-        ----------------------------------------------- */
-        const MARQUEE_ITEMS = [
-            'BARRIERE VITAMIN PATCHES',
-            'SUMMER FRIDAYS × GAP',
-            'CRUMBL COOKIES',
-            'EMERGING BRANDS',
-            'STREET CULTURE',
-            'BEAUTY INNOVATION',
-        ];
+</div><!-- /.page -->
 
-        (function buildMarquee() {
-            const track = document.getElementById('marqueeTrack');
-            // Duplicate the set once so the CSS translateX(-50%) loop is seamless
-            const allItems = [...MARQUEE_ITEMS, ...MARQUEE_ITEMS];
-            allItems.forEach(text => {
-                const span = document.createElement('div');
-                span.className = 'marquee-item';
-                span.textContent = text;
-                track.appendChild(span);
-            });
-        })();
+<script>
+/* ── Marquee ─────────────────────────────────────────────── */
+const ITEMS = ['BARRIERE VITAMIN PATCHES','SUMMER FRIDAYS × GAP','CRUMBL COOKIES','EMERGING BRANDS','STREET CULTURE','BEAUTY INNOVATION'];
+const track = document.getElementById('marqueeTrack');
+[...ITEMS, ...ITEMS].forEach(t => {
+    const d = document.createElement('div');
+    d.className = 'marquee-item';
+    d.textContent = t;
+    track.appendChild(d);
+});
 
-        /* -----------------------------------------------
-           Nav helpers
-        ----------------------------------------------- */
-        function closeMenu() {
-            document.getElementById('hamburger').classList.remove('active');
-            document.querySelector('.nav-links').classList.remove('open');
-        }
+/* ── Nav ─────────────────────────────────────────────────── */
+function closeNav() {
+    document.getElementById('burger').classList.remove('open');
+    document.getElementById('navLinks').classList.remove('open');
+}
+document.getElementById('burger').addEventListener('click', function() {
+    this.classList.toggle('open');
+    document.getElementById('navLinks').classList.toggle('open');
+});
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', function(e) {
+        const t = document.querySelector(this.getAttribute('href'));
+        if (!t) return;
+        e.preventDefault();
+        t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+});
 
-        document.querySelectorAll('a[href^="#"]').forEach(a => {
-            a.addEventListener('click', function(e) {
-                e.preventDefault();
-                const t = document.querySelector(this.getAttribute('href'));
-                if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            });
-        });
+/* ── Fade-in observer ────────────────────────────────────── */
+const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.fade').forEach(el => io.observe(el));
 
-        /* -----------------------------------------------
-           Intersection Observer — fade-ins
-        ----------------------------------------------- */
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+/* ── Articles carousel ───────────────────────────────────── */
+const artTrack = document.getElementById('artTrack');
+const fill     = document.getElementById('scrollFill');
 
-        document.querySelectorAll('.brand-card, .editorial-card, .editorial-large, .article-card').forEach(el => {
-            el.classList.add('fade-in');
-            observer.observe(el);
-        });
+function cardW() {
+    const c = artTrack.querySelector('.article-card');
+    const g = parseFloat(getComputedStyle(artTrack).gap) || 0;
+    return c ? c.offsetWidth + g : 380;
+}
 
-        /* -----------------------------------------------
-           FIX #4: Scroll buttons — use CSS gap computed value,
-           not a hardcoded pixel offset
-        ----------------------------------------------- */
-        const track = document.getElementById('articlesTrack');
-        const bar   = document.getElementById('scrollProgressBar');
+document.getElementById('sPrev').addEventListener('click', () => artTrack.scrollBy({ left: -cardW(), behavior: 'smooth' }));
+document.getElementById('sNext').addEventListener('click', () => artTrack.scrollBy({ left:  cardW(), behavior: 'smooth' }));
 
-        function getCardScrollWidth() {
-            const card = track.querySelector('.article-card');
-            if (!card) return 400;
-            // gap between cards via computed style on the track
-            const gap = parseFloat(getComputedStyle(track).gap) || 0;
-            return card.offsetWidth + gap;
-        }
+artTrack.addEventListener('scroll', () => {
+    const max = artTrack.scrollWidth - artTrack.clientWidth;
+    fill.style.width = (max > 0 ? artTrack.scrollLeft / max * 100 : 0) + '%';
+});
 
-        document.getElementById('scrollPrev').addEventListener('click', () => {
-            track.scrollBy({ left: -getCardScrollWidth(), behavior: 'smooth' });
-        });
+/* drag to scroll — mouse */
+let drag = false, sx, sl;
+artTrack.addEventListener('mousedown', e => { drag = true; sx = e.pageX; sl = artTrack.scrollLeft; artTrack.classList.add('dragging'); });
+window.addEventListener('mousemove',   e => { if (!drag) return; e.preventDefault(); artTrack.scrollLeft = sl - (e.pageX - sx); });
+window.addEventListener('mouseup',     ()  => { drag = false; artTrack.classList.remove('dragging'); });
 
-        document.getElementById('scrollNext').addEventListener('click', () => {
-            track.scrollBy({ left: getCardScrollWidth(), behavior: 'smooth' });
-        });
-
-        track.addEventListener('scroll', () => {
-            const max = track.scrollWidth - track.clientWidth;
-            bar.style.width = (max > 0 ? (track.scrollLeft / max) * 100 : 0) + '%';
-        });
-
-        /* -----------------------------------------------
-           FIX #2: Drag-to-scroll — mouse AND touch events
-        ----------------------------------------------- */
-        let isDragging = false, startX, scrollStart;
-
-        // ---- Mouse ----
-        track.addEventListener('mousedown', e => {
-            isDragging = true;
-            startX = e.pageX;
-            scrollStart = track.scrollLeft;
-            track.classList.add('dragging');
-        });
-        window.addEventListener('mousemove', e => {
-            if (!isDragging) return;
-            e.preventDefault();
-            track.scrollLeft = scrollStart - (e.pageX - startX);
-        });
-        window.addEventListener('mouseup', () => {
-            isDragging = false;
-            track.classList.remove('dragging');
-        });
-
-        // ---- Touch ----
-        track.addEventListener('touchstart', e => {
-            isDragging = true;
-            startX = e.touches[0].pageX;
-            scrollStart = track.scrollLeft;
-        }, { passive: true });
-        track.addEventListener('touchmove', e => {
-            if (!isDragging) return;
-            track.scrollLeft = scrollStart - (e.touches[0].pageX - startX);
-        }, { passive: true });
-        track.addEventListener('touchend', () => { isDragging = false; });
-    </script>
+/* drag to scroll — touch */
+artTrack.addEventListener('touchstart', e => { drag = true; sx = e.touches[0].pageX; sl = artTrack.scrollLeft; }, { passive: true });
+artTrack.addEventListener('touchmove',  e => { if (!drag) return; artTrack.scrollLeft = sl - (e.touches[0].pageX - sx); }, { passive: true });
+artTrack.addEventListener('touchend',   ()  => { drag = false; });
+</script>
 </body>
 </html>
